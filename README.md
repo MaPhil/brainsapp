@@ -6,8 +6,8 @@ I will add all necessary things for the brainsapp styles
 1. we add the objects
 
 all infos at wiki.brainsapp.de
-nav
- -> header
+1. nav
+⋅⋅*header
       -> sticky
       -> logo(wide)
       -> logo(small)
