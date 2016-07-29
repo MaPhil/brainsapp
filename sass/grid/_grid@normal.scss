@@ -1,0 +1,36 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+.ba-row {
+    clear: both;
+    margin-right: -15px;
+    margin-left: -15px;
+    &:befor,
+    :after {
+        content: " ";
+        display: table;
+        clear: both;
+    }
+}
+
+@include test($class_names, $column_count);
+@include set-width-to-variable($class_names, $column_count);
+
+@media(max-width: $l_width) {
+    $temp: "xl";
+    @include set-width-to-100($temp, $column_count);
+}
+
+@media(max-width: $m_width) {
+    $temp: "xl", "l";
+    @include set-width-to-100($temp, $column_count);
+}
+
+@media(max-width: $s_width) {
+    $temp: "xl", "l", "m";
+    @include set-width-to-100($temp, $column_count);
+}
+
+@media(max-width: $xs_width) {
+    $temp: "xl", "l", "m", "s";
+    @include set-width-to-100($temp, $column_count);
+}
