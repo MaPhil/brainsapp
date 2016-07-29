@@ -6,66 +6,77 @@ I will add all necessary things for the brainsapp styles
 1. we add the objects
 
 all infos at wiki.brainsapp.de
-1. nav
-⋅⋅*header
-      -> sticky
-      -> logo(wide)
-      -> logo(small)
-      -> left
-           -> items
-           -> dropdown
-      -> right
-           -> items
-           -> buttonas
-           -> dropdown
-  -> footer
-      -> sticky
-      -> left
-           -> items
-           -> socials icons
-           -> divider
-      -> right
-           -> items
-           -> copy right
-logo 
-  -> center, left, right
-
-masonry
-  -> items
-       -> image:: center, top
-       -> title:: bold
-       -> counter
-       -> description
-       -> user(creator)
-            -> avatar + user name
-
-container
-  -> center
-
-team image
-  -> image:: round
-  -> name
-  -> job
-
-coop image
-  -> image:: squer 
 
 
-input group
-  -> inputfields:: white, placeholer:: grey
+- nav
+  - header
+    - sticky
+    - logo :: wide
+    - logo :: small
+    - left
+      - items
+      - dropdown
+    - right
+      - items
+      - button
+      - dropdown
+  - footer
+    - sticky
+    - left
+      - items
+      - social icons
+      - divider
+    - right
+      - items
+      - copy right
+- container
+  - logo :: center :: right :: left
+  - masonry
+    - item
+      - image
+      - title :: center :: right :: left :: bold
+      - counter
+      - description
+      - user
+        - avatar
+        - name
+  - img-2-line
+    - image :: round :: rounded :: square
+    - title
+    - subline
+  - img-social
+    - image :: round :: rounded :: square
+      - social icons  
+    - subline
+  - input-group
+    - text
+    - checkbox
+    - radio button
+    - textarea
+    - info box
+  - buttons
+    - color
+  - text :: center :: right :: left
+  - icon-text
+    - icon
+    - text
+- app logo :: shadow 
+- panel :: block
+  - text
+  - image
+  - rows
+    - image
+    - column container 
+        - button
+        - icon
+- search-input
+  - text
+  - search icon
+- scroll-container :: scroll-y
+- dropdown-container
+  - text 
+  - input   
+  - icon
+  - link
 
-buttons:: border-radius: 5px;
-     -> blue
-          -> color: white
-     -> white
-          -> color: black
 
-links:: cursor: pointer
-
-socialm icons:: cursor: pointer
-
-text:: white,
-
-rules items
-  -> icon:: grey
-  -> text:: grey
