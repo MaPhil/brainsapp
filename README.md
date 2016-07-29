@@ -60,3 +60,23 @@ all infos at wiki.brainsapp.de
   - icon-text
     - icon
     - text
+- app logo :: shadow 
+- panel :: block
+  - text
+  - image
+  - rows
+    - image
+    - column container 
+        - button
+        - icon
+- search-input
+  - text
+  - search icon
+- scroll-container :: scroll-y
+- dropdown-container
+  - text 
+  - input   
+  - icon
+  - link
+
+
