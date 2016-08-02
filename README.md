@@ -61,7 +61,7 @@ all infos at wiki.brainsapp.de
     - icon
     - text
 - app logo :: shadow 
-- panel :: block
+- panel :: block, boxshadow
   - text
   - image
   - rows
@@ -73,10 +73,12 @@ all infos at wiki.brainsapp.de
   - text
   - search icon
 - scroll-container :: scroll-y
+  - round-img
 - dropdown-container
   - text 
   - input   
   - icon
   - link
+
 
 
