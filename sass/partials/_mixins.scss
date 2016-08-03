@@ -1,1 +1,55 @@
-bla{}
+@function multi-selector-whole-grid($classes, $counter) {
+    $test: "";
+    @each $class in $classes {
+        @for $i from 1 through $column_count {
+            $test: #{$test}#{".ba-col-"}#{$class}#{"-"}#{$i}#{","};
+        }
+    }
+    @return $test
+}
+
+@function multi-selector-specific-grid($classes,$index) {
+    $test: "";
+    @each $class in $classes {
+        $test: #{$test}#{".ba-col-"}#{$class}#{"-"}#{$index}#{","};
+    }
+    @return $test
+}
+
+@mixin pre-define-col($class, $column_count) {
+    @for $i from 1 through $column_count {
+        .ba-col-#{$class}-#{$i} {
+            float: left;
+            position: relative;
+            min-height: 1px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+}
+
+@mixin set-width-to-100($classes, $column_count) {
+    #{multi-selector-whole-grid($classes, $column_count)} {
+        width: 100%;
+    }
+}
+
+@mixin set-width-to-variable($classes, $column_count) {
+    @for $i from 1 through $column_count {
+        $width: percentage(($column_count - ($column_count - $i))/$column_count);
+        #{multi-selector-specific-grid($classes, $i)} {
+            width: $width;
+        }
+    }
+}
+
+@mixin test($classes, $column_count) {
+    #{multi-selector-whole-grid($classes,$column_count)} {
+        float: left;
+        position: relative;
+        min-height: 1px;
+        padding-left: 15px;
+        padding-right: 15px;
+        width: 100%;
+    }
+}
