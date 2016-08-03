@@ -61,7 +61,7 @@ all infos at wiki.brainsapp.de
     - icon
     - text
 - app logo :: shadow 
-- panel :: block
+- panel :: block, boxshadow
   - text
   - image
   - rows
@@ -73,10 +73,27 @@ all infos at wiki.brainsapp.de
   - text
   - search icon
 - scroll-container :: scroll-y
+  - round-img
 - dropdown-container
   - text 
   - input   
   - icon
   - link
 
+* * *
+
+## to do list for the system
+
+- [AngularJS Masonry Directive](https://github.com/passy/angular-masonry)
+  - masonry layout
+    - append item (order must not change if append)
+
+- own css
+  - grid system
+  - css performance for mobile (animation frames)
+
+- database optimizer
+
+- theme for system 
+  - account, play(embed) all sites have to be the same unit 
 
