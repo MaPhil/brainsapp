@@ -1,0 +1,32 @@
+{
+  "name": "brainsapp",
+  "version": "0.0.1",
+  "description": "A framework for the brainsapp platform",
+  "main": "index.html",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "gulp fortune"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://MaPhil:%23X125vBcd%3F@github.com/MaPhil/brainsapp"
+  },
+  "author": "Philipp Mainz",
+  "license": "GNU",
+  "bugs": {
+    "url": "https://github.com/MaPhil/brainsapp/issues"
+  },
+  "homepage": "https://github.com/MaPhil/brainsapp",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-compass": "^2.1.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0",
+    "jshint": "^2.9.2"
+  }
+}
