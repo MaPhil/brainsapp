@@ -1,4 +1,3 @@
-window.ba.util = {};
 
 //random functions
 window.ba.util.random = {};
@@ -14,3 +13,4 @@ window.ba.util.random.string = function (l) {
     for (var i = 0; i < l; i++) text += possible.charAt(Math.floor(Math.random() * possible.length));
     return text;
 };
+

@@ -29,12 +29,17 @@
 
 <body ng-app="testmasonry">
     <div class="ba-container" ng-controller="MainController">
-        <div id="masonry" class="masonry1">
-            <div class="" ng-repeat="i in test" style="height:{{i.height}}">{{name}}</div>
+        <div id="masonry" class="masonry1 ba-dynamic-row">
+            <div class="ba-dynamic-col" ng-repeat="i in test">
+                <div class="panel" ng-repeat=" a in i" style="height:{{a.height}}">
+                    {{a.name}}
+                </div>
+            </div>
         </div>
     </div>
 </body>
 <script>
+    console.log(window.ba)
     var generateEntries = function(a) {
         var out = new Array();
         for (var i = 0; i < a; i++) {
@@ -50,7 +55,8 @@
 <script>
     var app = angular.module("testmasonry", []);
     app.controller('MainController', ['$scope', function($scope) {
-        $scope.test = generateEntries(10);
+        var testEntries = generateEntries(10);
+        $scope.test = window.ba.masonry.init("masonry1", testEntries);
     }]);
 
 </script>

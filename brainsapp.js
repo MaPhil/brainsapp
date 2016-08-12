@@ -1,7 +1,17 @@
 (function () {
     'use strict';
     window.ba = {};
+
     window.ba.var = {};
+
+    window.ba.var.media_queries = {};
+    window.ba.var.media_queries.xl = 1200;
+    window.ba.var.media_queries.l = 992;
+    window.ba.var.media_queries.m = 768;
+    window.ba.var.media_queries.s = 544;
+    window.ba.var.media_queries.xs = 400;
+
+
     window.ba.util = {};
     
     //random functions
@@ -19,57 +29,48 @@
         return text;
     };
     
-        
-    var testMasonry = 'bla';
 
-    //$xl_width: 1200px;
-    //$l_width: 992px;
-    //$m_width: 768px;
-    //$s_width: 544px;
-    //$xs_width: 400px;
 
-    var masonry_init = function (array_el) {
-        // > 1280 -> Desktop
-        // 750 - 1280 -> tablet, phablet
-        // < 750 -> phone
 
-        var col_w = $('#masonry').clientWidth;
-        var result = [];
+    window.ba.masonry = {};
+    console.log('hallo');
+    window.ba.masonry.config = {};
+    window.ba.masonry.config.colum = {};
+    window.ba.masonry.config.colum.xl = 5;
+    window.ba.masonry.config.colum.l = 4;
+    window.ba.masonry.config.colum.m = 3;
+    window.ba.masonry.config.colum.s = 2;
 
-        if (window.screen.width > 768) {
 
-            // columns verteilen max5 min2
-            if(col_w > 768 && col_w < 1200){
+    (function () {
+        'use strict';
 
+
+
+        window.ba.masonry.init = function (elem, array) {
+            var cols = core(elem);
+            console.log(cols)
+            var o = [];
+            var i;
+            for (i = 0; i < cols; i++) {
+                o.push([]);
             }
-
-
-            for(var i = 0; i < col.length; i++){
-                result[i] = [];
+            for (i = 0; i < array.length; i++) {
+                o[i % cols].push(array[i]);
             }
-            for (var i = 0; i < array_el.length; i++) {
-                result[i % col.length].push(array_el[i]);
-            }
+            return o;
+        };
 
-        } else {
+        var core = function (elem) {
+            var w = document.getElementsByClassName(elem)[0].offsetWidth;
+            var mq = window.ba.var.media_queries;
+            var col = window.ba.masonry.config.colum;
+            if (w > mq.xl) return col.xl;
+            if (w < mq.xl && w > mq.l) return col.l;
+            if (w < mq.l && w > mq.m) return col.m;
+            if (w < mq.m && w > mq.s) return col.s;
+        };
 
-            // columns verteilen max3 min2
-
-            for(var i = 0; i < col.length; i++){
-                result[i] = [];
-            }
-            for (var i = 0; i < array_el.length; i++) {
-                result[i % col.length].push(array_el[i]);
-            }
-
-        }
-
-        return result;
-    }
-
-    $(window).resize(function () {
-    //    var result_array = masonry_init(array_el);
-        console.log($('#masonry')[0].clientWidth);
-    })
+    })();
 
 }());
