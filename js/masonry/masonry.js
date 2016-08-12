@@ -25,7 +25,7 @@
         if (w > mq.xl) return col.xl;
         if (w < mq.xl && w > mq.l) return col.l;
         if (w < mq.l && w > mq.m) return col.m;
-        if (w < mq.m && w > mq.s) return col.s;
+        if (w < mq.m ) return col.s;
     };
 
 })();
