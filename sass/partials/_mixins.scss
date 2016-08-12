@@ -42,6 +42,29 @@
         }
     }
 }
+@mixin dynamic-set($class, $column_count) {
+    @for $i from 1 through $column_count {
+        $width: percentage(($column_count - ($column_count - $i))/$column_count);
+        #{$class}#{$i} {
+            -webkit-box-flex: 0;
+            -webkit-flex: 0 0 $width;
+            -moz-box-flex: 0;
+            -moz-flex: 0 0 $width;
+            -ms-flex: 0 0 $width;
+            flex: 0 0 $width;
+            max-width: $width;
+        }
+    }
+}
+
+@mixin dynamic-set-offset($class, $column_count) {
+    @for $i from 1 through $column_count {
+        $ml: percentage(($column_count - ($column_count - $i))/$column_count);
+        #{$class}#{$i} {
+            margin-left: $ml;
+        }
+    }
+}
 
 @mixin test($classes, $column_count) {
     #{multi-selector-whole-grid($classes,$column_count)} {

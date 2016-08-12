@@ -8,32 +8,51 @@
     <script src="../bower_components/angular/angular.min.js"></script>
     <script src="../js/masonry/masonry.js"></script>
     <style>
-        #masonry{
+        #masonry {
             width: 100%;
-            display:flex;
+            display: flex;
             justify-content: center;
             min-height: 200px;
         }
-        .masonry-column{
+
+        .masonry-column {
             border: 1px solid lightgray;
             padding: auto 5px;
         }
-        .masonry-item{
+
+        .masonry-item {
             margin-bottom: 10px;
         }
+
     </style>
 </head>
 
 <body ng-app="testmasonry">
-    <div class="ba-container"  ng-controller="MainController">
-        <div id="masonry" class="masonry1">{{test}}</div>
+    <div class="ba-container" ng-controller="MainController">
+        <div id="masonry" class="masonry1">
+            <div class="" ng-repeat="i in test" style="height:{{i.height}}">{{name}}</div>
+        </div>
     </div>
 </body>
+<script>
+    var generateEntries = function(a) {
+        var out = new Array();
+        for (var i = 0; i < a; i++) {
+            out.push({
+                height: window.ba.util.random.int(50, 300) + 'px',
+                name: window.ba.util.random.string(10)
+            });
+        }
+        return out;
+    }
 
-    <script>
-        var app = angular.module("testmasonry", []);
-        app.controller('MainController', ['$scope', function ($scope) {
-           $scope.test = 'test';
-        }]);
-    </script>
+</script>
+<script>
+    var app = angular.module("testmasonry", []);
+    app.controller('MainController', ['$scope', function($scope) {
+        $scope.test = generateEntries(10);
+    }]);
+
+</script>
+
 </html>
