@@ -22,6 +22,7 @@
 
         .masonry-item {
             margin-bottom: 10px;
+            border: 1px solid;
         }
 
     </style>
@@ -31,7 +32,7 @@
     <div class="ba-container" ng-controller="MainController">
         <div id="masonry" class="masonry1 ba-dynamic-row">
             <div class="ba-dynamic-col" ng-repeat="i in test">
-                <div class="panel" ng-repeat=" a in i" style="height:{{a.height}}">
+                <div class="panel masonry-item" ng-repeat=" a in i" style="height:{{a.height}}">
                     {{a.name}}
                 </div>
             </div>
@@ -54,9 +55,13 @@
 </script>
 <script>
     var app = angular.module("testmasonry", []);
-    app.controller('MainController', ['$scope', function($scope) {
+    app.controller('MainController', ['$scope','$timeout', function($scope,$timeout) {
         var testEntries = generateEntries(10);
         $scope.test = window.ba.masonry.init("masonry1", testEntries);
+        $timeout(function(){
+            $scope.test = window.ba.masonry.resize("masonry1",$scope.test);
+            console.log($scope.test);
+        },10000)
     }]);
 
 </script>
