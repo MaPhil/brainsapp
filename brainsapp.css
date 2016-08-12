@@ -320,3 +320,25 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   margin-right: auto;
   margin-left: auto;
 }
+
+.masonry {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+}
+.masonry .item {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+  -moz-box-flex: 1;
+  -moz-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: block;
+  padding: 5px;
+  width: 100%;
+}

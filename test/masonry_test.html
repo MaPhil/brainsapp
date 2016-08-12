@@ -8,19 +8,11 @@
     <script src="../bower_components/angular/angular.min.js"></script>
     <script src="../js/masonry/masonry.js"></script>
     <style>
-        #masonry {
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            min-height: 200px;
-        }
 
-        .masonry-column {
-            border: 1px solid lightgray;
-            padding: auto 5px;
-        }
 
-        .masonry-item {
+
+
+        .test-item {
             margin-bottom: 10px;
             border: 1px solid;
         }
@@ -30,9 +22,9 @@
 
 <body ng-app="testmasonry">
     <div class="ba-container" ng-controller="MainController">
-        <div id="masonry" class="masonry1 ba-dynamic-row">
-            <div class="ba-dynamic-col" ng-repeat="i in test">
-                <div class="panel masonry-item" ng-repeat=" a in i" style="height:{{a.height}}">
+        <div id="masonry1" class="masonry">
+            <div class="item" ng-repeat="i in test">
+                <div class="panel test-item" ng-repeat=" a in i" style="height:{{a.height}}">
                     {{a.name}}
                 </div>
             </div>
@@ -55,13 +47,15 @@
 </script>
 <script>
     var app = angular.module("testmasonry", []);
-    app.controller('MainController', ['$scope','$timeout', function($scope,$timeout) {
+    app.controller('MainController', ['$scope', '$timeout', function($scope, $timeout) {
         var testEntries = generateEntries(10);
         $scope.test = window.ba.masonry.init("masonry1", testEntries);
-        $timeout(function(){
-            $scope.test = window.ba.masonry.resize("masonry1",$scope.test);
-            console.log($scope.test);
-        },10000)
+
+
+        //        $timeout(function() {
+        //            $scope.test = window.ba.masonry.resize("masonry1", $scope.test);
+        //            console.log($scope.test);
+        //        }, 1000)
     }]);
 
 </script>
