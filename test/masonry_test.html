@@ -1,18 +1,39 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <link href="../brainsapp.css" rel="stylesheet">
-        <script src="../brainsapp.js"></script>
-    </head>
+<head>
+    <link href="../brainsapp.css" rel="stylesheet">
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../brainsapp.js"></script>
+    <script src="../bower_components/angular/angular.min.js"></script>
+    <script src="../js/masonry/masonry.js"></script>
+    <style>
+        #masonry{
+            width: 100%;
+            display:flex;
+            justify-content: center;
+            min-height: 200px;
+        }
+        .masonry-column{
+            border: 1px solid lightgray;
+            padding: auto 5px;
+        }
+        .masonry-item{
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
 
-    <body>
-        <div class="ba-container">
-            <div id="masonry" class="masonry1"></div>
-        </div>
-        <script>
-            
-        </script>
-    </body>
-    
+<body ng-app="testmasonry">
+    <div class="ba-container"  ng-controller="MainController">
+        <div id="masonry" class="masonry1">{{test}}</div>
+    </div>
+</body>
+
+    <script>
+        var app = angular.module("testmasonry", []);
+        app.controller('MainController', ['$scope', function ($scope) {
+           $scope.test = 'test';
+        }]);
+    </script>
 </html>
