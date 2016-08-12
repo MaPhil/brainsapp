@@ -96,7 +96,11 @@
 
         };
         window.ba.masonry.get_index = function () {
-
+            var height_array = window.ba.masonry.config.temp.height;
+            return height_array.indexOf(height_array.min());
+        };
+        window.ba.masonry.push_item = function(array){
+            array[window.ba.masonry.get_index].push();
         };
         var core = function (elem) {
             var w = document.getElementById(elem).offsetWidth;
