@@ -8,6 +8,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var cleanCSS = require('gulp-clean-css');
+var include = require('gulp-include')
 
 
 
@@ -29,11 +30,16 @@ gulp.task('compass', function () {
         .pipe(gulp.dest('app/assets/temp'));
 });
 
+gulp.task('script', function () {
+    return gulp.src('js/brainsapp.js')
+        .pipe(include())
+        .on('error', console.log)
+        .pipe(gulp.dest('./'));
+})
+
 // Concatenate & Minify JS
 gulp.task('compress-js', function () {
-    return gulp.src('js/**/*.js')
-        .pipe(concat('brainsapp.js'))
-        .pipe(gulp.dest('./'))
+    return gulp.src('./brainsapp.js')
         .pipe(rename('brainsapp.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('./min'));
@@ -48,7 +54,7 @@ gulp.task('compress-css', function () {
 
 // Watch Files For Changes
 gulp.task('watch', function () {
-    gulp.watch('js/**/*.js', ['lint']);
+    gulp.watch('js/**/*.js', ['lint','script']);
     gulp.watch('sass/**/*.scss', ['compass']);
 });
 
@@ -56,7 +62,7 @@ gulp.task('watch', function () {
 gulp.task('default', ['compass', 'watch']);
 
 // Developent
-gulp.task('fortune', ['lint', 'compass', 'watch']);
+gulp.task('fortune', ['compass', 'lint','script', 'watch']);
 
 // Before commit
-gulp.task('compress', ['compress-css','compress-js'])
+gulp.task('compress', ['compress-css', 'compress-js'])
