@@ -5,6 +5,7 @@
 
     window.ba.masonry.init = function (elem, array) {
         var cols = core(elem);
+        window.ba.masonry.current_colums = cols;
         var o = [];
         var i;
         for (i = 0; i < cols; i++) {
@@ -13,16 +14,18 @@
         for (i = 0; i < array.length; i++) {
             o[i % cols].push(array[i]);
         }
-        setTimeout(function(){
+        setTimeout(function () {
             window.ba.masonry.get_basic(elem);
-        },500);
+        }, 500);
         return o;
     };
 
     window.ba.masonry.resize = function (elem, array) {
         var cols = core(elem);
+        window.ba.masonry.current_colums = cols;
         var o = [];
         var i;
+
         if (cols < array.length) {
             for (i = 0; i < cols; i++) {
                 o.push(array[i]);
@@ -39,25 +42,8 @@
         }
         return o;
     };
-    window.ba.masonry.get_basic = function (elem) {
-        window.ba.masonry.config.temp = {};
-        window.ba.masonry.config.temp.colum = core(elem);
-        var t = [];
-        for (var i = 0; i < window.ba.masonry.config.temp.colum; i++) {
-            t.push($('#' + elem + '>div:nth-child(' + (i + 1) + ')').height());
-        }
-        window.ba.masonry.config.temp.height = t;
-        return window.ba.masonry.config.temp;
-    };
-    window.ba.masonry.get_by_id = function (elem, id) {
-
-    };
-    window.ba.masonry.get_index = function () {
-        var height_array = window.ba.masonry.config.temp.height;
-        return height_array.indexOf(height_array.min());
-    };
-    window.ba.masonry.push_item = function(array){
-        array[window.ba.masonry.get_index].push();
+    window.ba.masonry.colums = function (elem) {
+        return core(elem);
     };
     var core = function (elem) {
         var w = document.getElementById(elem).offsetWidth;

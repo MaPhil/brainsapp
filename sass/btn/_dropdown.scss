@@ -1,0 +1,38 @@
+.ba-dropdown {
+  position: relative;
+  .ba-dropbtn {
+    cursor: pointer;
+  }
+  .ba-dropdown-content {
+
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    a {
+      color: black;
+      padding: 0 16px;
+      text-decoration: none;
+      display: block;
+      &:hover {
+        background-color: #f1f1f1
+      }
+    }
+    &.ba-show {
+      display: block;
+    }
+    &.left{
+      left:0;
+      text-align: left;
+    }
+    &.right{
+      right:0;
+      text-align: right;
+    }
+    &.text_center{
+      text-align: center;
+    }
+  }
+}

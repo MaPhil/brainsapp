@@ -1,6 +1,33 @@
 .ba-container {
-    padding-right: 15px;
-    padding-left: 15px;
-    margin-right: auto;
-    margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
 }
+
+
+@media(min-width: $xs_width) {
+  .ba-container {
+    width: auto;
+  }
+}
+
+@media(min-width: $m_width) {
+  .ba-container {
+    width: 820px;
+  }
+}
+
+@media(min-width: $l_width) {
+  .ba-container {
+    width: 1000px;
+  }
+}
+
+
+@media(min-width: $xl_width) {
+  .ba-container {
+    width: 1200px;
+  }
+}
+

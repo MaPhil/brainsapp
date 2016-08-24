@@ -9,15 +9,14 @@
 @import "grid/grid@normal";
 @import "grid/grid@dynamic";
 
+//import btn
+@import "btn/dropdown";
+
+//import header
+@import "nav/header/header";
+
 //import container
 @import "container/container";
 
 //import masonry
 @import "masonry/masonry";
-
-//import query changes
-@import "media/query@xl";
-@import "media/query@l";
-@import "media/query@m";
-@import "media/query@s";
-@import "media/query@xs";

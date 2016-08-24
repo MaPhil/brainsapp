@@ -1,78 +1,83 @@
 @function multi-selector-whole-grid($classes, $counter) {
-    $test: "";
-    @each $class in $classes {
-        @for $i from 1 through $column_count {
-            $test: #{$test}#{".ba-col-"}#{$class}#{"-"}#{$i}#{","};
-        }
+  $test: "";
+  @each $class in $classes {
+    @for $i from 1 through $column_count {
+      $test: #{$test}#{".ba-col-"}#{$class}#{"-"}#{$i}#{","};
     }
-    @return $test
+  }
+  @return $test
 }
 
-@function multi-selector-specific-grid($classes,$index) {
-    $test: "";
-    @each $class in $classes {
-        $test: #{$test}#{".ba-col-"}#{$class}#{"-"}#{$index}#{","};
-    }
-    @return $test
+@function multi-selector-specific-grid($classes, $index) {
+  $test: "";
+  @each $class in $classes {
+    $test: #{$test}#{".ba-col-"}#{$class}#{"-"}#{$index}#{","};
+  }
+  @return $test
+}
+
+@mixin opacityBlue($heavines) {
+  background-color: rgba(25, 63, 77, $heavines);
 }
 
 @mixin pre-define-col($class, $column_count) {
-    @for $i from 1 through $column_count {
-        .ba-col-#{$class}-#{$i} {
-            float: left;
-            position: relative;
-            min-height: 1px;
-            padding-left: 15px;
-            padding-right: 15px;
-        }
+  @for $i from 1 through $column_count {
+    .ba-col-#{$class}-#{$i} {
+      float: left;
+      position: relative;
+      min-height: 1px;
+      padding-left: 15px;
+      padding-right: 15px;
     }
+  }
 }
 
 @mixin set-width-to-100($classes, $column_count) {
-    #{multi-selector-whole-grid($classes, $column_count)} {
-        width: 100%;
-    }
+  #{multi-selector-whole-grid($classes, $column_count)} {
+    width: 100%;
+  }
 }
 
 @mixin set-width-to-variable($classes, $column_count) {
-    @for $i from 1 through $column_count {
-        $width: percentage(($column_count - ($column_count - $i))/$column_count);
-        #{multi-selector-specific-grid($classes, $i)} {
-            width: $width;
-        }
+  @for $i from 1 through $column_count {
+    $width: percentage(($column_count - ($column_count - $i))/$column_count);
+    #{multi-selector-specific-grid($classes, $i)} {
+      width: $width;
     }
+  }
 }
+
 @mixin dynamic-set($class, $column_count) {
-    @for $i from 1 through $column_count {
-        $width: percentage(($column_count - ($column_count - $i))/$column_count);
-        #{$class}#{$i} {
-            -webkit-box-flex: 0;
-            -webkit-flex: 0 0 $width;
-            -moz-box-flex: 0;
-            -moz-flex: 0 0 $width;
-            -ms-flex: 0 0 $width;
-            flex: 0 0 $width;
-            max-width: $width;
-        }
+  @for $i from 1 through $column_count {
+    $width: percentage(($column_count - ($column_count - $i))/$column_count);
+    #{$class}#{$i} {
+      -webkit-box-flex: 0;
+      -webkit-flex: 0 0 $width;
+      -moz-box-flex: 0;
+      -moz-flex: 0 0 $width;
+      -ms-flex: 0 0 $width;
+      flex: 0 0 $width;
+      max-width: $width;
     }
+  }
 }
 
 @mixin dynamic-set-offset($class, $column_count) {
-    @for $i from 1 through $column_count {
-        $ml: percentage(($column_count - ($column_count - $i))/$column_count);
-        #{$class}#{$i} {
-            margin-left: $ml;
-        }
+  @for $i from 1 through $column_count {
+    $ml: percentage(($column_count - ($column_count - $i))/$column_count);
+    #{$class}#{$i} {
+      margin-left: $ml;
     }
+  }
 }
 
 @mixin test($classes, $column_count) {
-    #{multi-selector-whole-grid($classes,$column_count)} {
-        float: left;
-        position: relative;
-        min-height: 1px;
-        padding-left: 15px;
-        padding-right: 15px;
-        width: 100%;
-    }
+  #{multi-selector-whole-grid($classes,$column_count)} {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-left: 15px;
+    padding-right: 15px;
+    width: 100%;
+  }
 }

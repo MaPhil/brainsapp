@@ -134,7 +134,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     width: 100%;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 798px) {
   .ba-col-xl-1, .ba-col-xl-2, .ba-col-xl-3, .ba-col-xl-4, .ba-col-xl-5, .ba-col-xl-6, .ba-col-xl-7, .ba-col-xl-8, .ba-col-xl-9, .ba-col-xl-10, .ba-col-xl-11, .ba-col-xl-12, .ba-col-l-1, .ba-col-l-2, .ba-col-l-3, .ba-col-l-4, .ba-col-l-5, .ba-col-l-6, .ba-col-l-7, .ba-col-l-8, .ba-col-l-9, .ba-col-l-10, .ba-col-l-11, .ba-col-l-12 {
     width: 100%;
   }
@@ -314,6 +314,99 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   margin-left: 100%;
 }
 
+.ba-dropdown {
+  position: relative;
+}
+.ba-dropdown .ba-dropbtn {
+  cursor: pointer;
+}
+.ba-dropdown .ba-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+}
+.ba-dropdown .ba-dropdown-content a {
+  color: black;
+  padding: 0 16px;
+  text-decoration: none;
+  display: block;
+}
+.ba-dropdown .ba-dropdown-content a:hover {
+  background-color: #f1f1f1;
+}
+.ba-dropdown .ba-dropdown-content.ba-show {
+  display: block;
+}
+.ba-dropdown .ba-dropdown-content.left {
+  left: 0;
+  text-align: left;
+}
+.ba-dropdown .ba-dropdown-content.right {
+  right: 0;
+  text-align: right;
+}
+.ba-dropdown .ba-dropdown-content.text_center {
+  text-align: center;
+}
+
+.ba-nav {
+  background-color: rgba(25, 63, 77, 0.5);
+  padding: 2px;
+}
+.ba-nav .ba-header .ba-left {
+  float: left;
+}
+.ba-nav .ba-header .ba-left div,
+.ba-nav .ba-header .ba-left img {
+  cursor: pointer;
+  float: left;
+}
+.ba-nav .ba-header .ba-left .ba-logo_small {
+  height: 40px;
+  padding-right: 15px;
+}
+.ba-nav .ba-header .ba-right {
+  float: right;
+}
+.ba-nav .ba-header .ba-right div {
+  float: left;
+}
+.ba-nav .ba-header .ba-item {
+  line-height: 40px;
+  font-size: 18px;
+  padding: 0 10px;
+  color: white;
+  cursor: pointer;
+}
+.ba-nav .ba-header .ba-item button {
+  color: white;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  font-family: inherit;
+}
+.ba-nav .ba-header .ba-item button:focus {
+  outline: 0;
+}
+.ba-nav .ba-header .ba-item input[type="text"] {
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: none;
+  outline: 0;
+  border: none;
+  padding: 5px;
+  border-bottom: 1px solid #fff;
+}
+.ba-nav .ba-header:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+}
+
 .ba-container {
   padding-right: 15px;
   padding-left: 15px;
@@ -321,6 +414,26 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   margin-left: auto;
 }
 
+@media (min-width: 400px) {
+  .ba-container {
+    width: auto;
+  }
+}
+@media (min-width: 798px) {
+  .ba-container {
+    width: 820px;
+  }
+}
+@media (min-width: 992px) {
+  .ba-container {
+    width: 1000px;
+  }
+}
+@media (min-width: 1200px) {
+  .ba-container {
+    width: 1200px;
+  }
+}
 .masonry {
   display: -webkit-box;
   display: -webkit-flex;

@@ -8,10 +8,6 @@
     <script src="../bower_components/angular/angular.min.js"></script>
     <script src="../js/masonry/masonry.js"></script>
     <style>
-
-
-
-
         .test-item {
             margin-bottom: 10px;
             border: 1px solid;
@@ -49,7 +45,15 @@
     var app = angular.module("testmasonry", []);
     app.controller('MainController', ['$scope', '$timeout', function($scope, $timeout) {
         var testEntries = generateEntries(10);
-        $scope.test = window.ba.masonry.init("masonry1", testEntries);
+        $scope.test = JSON.parse(JSON.stringify(window.ba.masonry.init("masonry1", testEntries)));
+
+        window.addEventListener("resize", function() {
+            if (window.ba.masonry.current_colums !== window.ba.masonry.colums("masonry1")) {
+                $timeout(function() {
+                    $scope.test = JSON.parse(JSON.stringify(window.ba.masonry.resize("masonry1", $scope.test)))
+                })
+            }
+        });
 
 
         //        $timeout(function() {

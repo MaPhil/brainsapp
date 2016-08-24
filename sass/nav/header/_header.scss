@@ -1,0 +1,59 @@
+@import "../../partials/variables";
+@import "../../partials/mixins";
+.ba-nav {
+  @include opacityBlue($standart_heavines);
+  padding: 2px;
+  &.ba-sicky {}
+  .ba-header {
+    .ba-left {
+      float: left;
+      div,
+      img {
+        cursor: pointer;
+        float: left;
+      }
+      .ba-logo_small {
+        height: 40px;
+        padding-right: 15px;
+      }
+    }
+    .ba-right {
+      float: right;
+      div {
+        float: left;
+      }
+    }
+    .ba-item {
+      line-height: 40px;
+      font-size: 18px;
+      padding: 0 10px;
+      color: white;
+      cursor: pointer;
+      button {
+        color: white;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        background-color: transparent;
+        font-family: inherit;
+        &:focus {
+          outline: 0;
+        }
+      }
+      input[type="text"] {
+        background-color: rgba(255, 255, 255, 0.1);
+        box-shadow: none;
+        outline: 0;
+        border: none;
+        padding: 5px;
+        border-bottom: 1px solid #fff;
+      }
+    }
+    &:after {
+      content: " ";
+      display: block;
+      height: 0;
+      clear: both;
+    }
+  }
+}
