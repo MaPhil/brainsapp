@@ -321,6 +321,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   cursor: pointer;
 }
 .ba-dropdown .ba-dropdown-content {
+  z-index: 1;
   display: none;
   position: absolute;
   background-color: #f9f9f9;
