@@ -1,0 +1,24 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
+@include dynamic-container-preset($class_names,"ba-container", $column_count);
+
+
+@media(min-width: $s_width) {
+  @include dynamic-container(".ba-container-s",$column_count)
+}
+
+@media(min-width: $m_width) {
+  @include dynamic-container(".ba-container-m",$column_count)
+}
+
+@media(min-width: $l_width) {
+  @include dynamic-container(".ba-container-l",$column_count)
+}
+
+
+@media(min-width: $xl_width) {
+  @include dynamic-container(".ba-container-xl",$column_count)
+}
+
+

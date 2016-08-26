@@ -14,4 +14,6 @@
   //=require masonry/masonry.js
 
   //=require event/dropdown.js
+
+  //=require angular/directive.js
 }());

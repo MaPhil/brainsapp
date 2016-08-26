@@ -21,7 +21,8 @@
 @import "nav/header/header";
 
 //import container
-@import "container/container";
+@import "container/container@normal";
+@import "container/container@dynamic";
 
 //import masonry
 @import "masonry/masonry";

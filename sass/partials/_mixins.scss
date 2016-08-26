@@ -8,6 +8,16 @@
   @return $test
 }
 
+@function multi-selector-container($classes, $middle, $counter) {
+  $test: "";
+  @each $class in $classes {
+    @for $i from 1 through $column_count {
+      $test: #{$test}#{"."}#{$middle}#{"-"}#{$class}#{"-"}#{$i}#{","};
+    }
+  }
+  @return $test
+}
+
 @function multi-selector-specific-grid($classes, $index) {
   $test: "";
   @each $class in $classes {
@@ -71,14 +81,21 @@
   }
 }
 
-@mixin test($classes, $column_count) {
-  #{multi-selector-whole-grid($classes,$column_count)} {
-    float: left;
-    position: relative;
-    min-height: 1px;
-    padding-left: 15px;
+@mixin dynamic-container($class, $column_count) {
+  @for $i from 1 through $column_count {
+    $ml: percentage(($column_count - ($column_count - $i))/$column_count);
+    #{$class}#{"-"}#{$i} {
+      width: $ml;
+    }
+  }
+}
+
+@mixin dynamic-container-preset($classes, $middle, $column_count) {
+  #{multi-selector-container($classes,$middle,$column_count)} {
     padding-right: 15px;
-    width: 100%;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
   }
 }
 
@@ -111,6 +128,7 @@
     }
   }
 }
+
 @mixin only-over($val, $units) {
   @for $i from 1 through length($val) {
     $temp1: nth( $val, $i);
@@ -137,7 +155,7 @@
       @for $e from 1 through length($units) {
         $temp2: nth( $units, $e);
         #{".ba-only-under-"}#{$temp2} {
-          @if $e <= $i {
+          @if $e <=$i {
             display: block;
           }
           @else {
