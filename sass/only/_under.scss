@@ -1,0 +1,21 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+
+$temp_value: $xl_width,$l_width,
+$m_width,
+$s_width,
+$xs_width;
+$temp_units: "xl","l",
+"m",
+"s",
+"xs";
+
+.ba-only-under-xl,
+.ba-only-under-l,
+.ba-only-under-m,
+.ba-only-under-s,
+.ba-only-under-xs {
+  display: none;
+}
+
+@include only-under($temp_value, $temp_units);

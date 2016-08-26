@@ -111,3 +111,40 @@
     }
   }
 }
+@mixin only-over($val, $units) {
+  @for $i from 1 through length($val) {
+    $temp1: nth( $val, $i);
+    @media(max-width: $temp1) {
+      @for $e from 1 through length($units) {
+        $temp2: nth( $units, $e);
+        #{".ba-only-over-"}#{$temp2} {
+          @if $e > $i {
+            display: block;
+          }
+          @else {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin only-under($val, $units) {
+  @for $i from 1 through length($val) {
+    $temp1: nth( $val, $i);
+    @media(max-width: $temp1) {
+      @for $e from 1 through length($units) {
+        $temp2: nth( $units, $e);
+        #{".ba-only-under-"}#{$temp2} {
+          @if $e <= $i {
+            display: block;
+          }
+          @else {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

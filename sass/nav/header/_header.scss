@@ -3,7 +3,7 @@
 .ba-nav {
   @include opacityBlue($standart_heavines);
   padding: 2px;
-  &.ba-nav.ba-only-over-m {
+  &.ba-nav.ba-over-smartphone {
     .ba-item {
       display: block;
     }
@@ -76,7 +76,7 @@
 }
 
 @media(max-width: $s_width) {
-  .ba-nav.ba-only-over-m {
+  .ba-nav.ba-over-smartphone {
     .ba-item {
       display: none !important;
     }
