@@ -375,6 +375,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   float: left;
 }
 .ba-nav .ba-header .ba-item {
+  z-index: 9;
   line-height: 40px;
   font-size: 18px;
   padding: 0 10px;
