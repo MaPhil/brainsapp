@@ -314,6 +314,122 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   margin-left: 100%;
 }
 
+.ba-only-xl {
+  display: block;
+}
+
+.ba-only-l,
+.ba-only-m,
+.ba-only-s,
+.ba-only-xs {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  .ba-only-xl {
+    display: block;
+  }
+
+  .ba-only-l {
+    display: none;
+  }
+
+  .ba-only-m {
+    display: none;
+  }
+
+  .ba-only-s {
+    display: none;
+  }
+
+  .ba-only-xs {
+    display: none;
+  }
+}
+@media (max-width: 992px) {
+  .ba-only-xl {
+    display: none;
+  }
+
+  .ba-only-l {
+    display: block;
+  }
+
+  .ba-only-m {
+    display: none;
+  }
+
+  .ba-only-s {
+    display: none;
+  }
+
+  .ba-only-xs {
+    display: none;
+  }
+}
+@media (max-width: 798px) {
+  .ba-only-xl {
+    display: none;
+  }
+
+  .ba-only-l {
+    display: none;
+  }
+
+  .ba-only-m {
+    display: block;
+  }
+
+  .ba-only-s {
+    display: none;
+  }
+
+  .ba-only-xs {
+    display: none;
+  }
+}
+@media (max-width: 544px) {
+  .ba-only-xl {
+    display: none;
+  }
+
+  .ba-only-l {
+    display: none;
+  }
+
+  .ba-only-m {
+    display: none;
+  }
+
+  .ba-only-s {
+    display: block;
+  }
+
+  .ba-only-xs {
+    display: none;
+  }
+}
+@media (max-width: 400px) {
+  .ba-only-xl {
+    display: none;
+  }
+
+  .ba-only-l {
+    display: none;
+  }
+
+  .ba-only-m {
+    display: none;
+  }
+
+  .ba-only-s {
+    display: none;
+  }
+
+  .ba-only-xs {
+    display: block;
+  }
+}
 .ba-dropdown {
   position: relative;
 }
@@ -356,6 +472,13 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
 .ba-nav {
   background-color: rgba(25, 63, 77, 0.5);
   padding: 2px;
+}
+.ba-nav.ba-nav.ba-only-over-m .ba-item {
+  display: block;
+}
+.ba-nav.ba-sticky {
+  position: fixed;
+  width: 100%;
 }
 .ba-nav .ba-header .ba-left {
   float: left;
@@ -402,6 +525,14 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   padding: 5px;
   border-bottom: 1px solid #fff;
 }
+.ba-nav .ba-header .ba-burger {
+  z-index: 9;
+  line-height: 40px;
+  font-size: 18px;
+  padding: 0 10px;
+  color: white;
+  cursor: pointer;
+}
 .ba-nav .ba-header:after {
   content: " ";
   display: block;
@@ -409,6 +540,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   clear: both;
 }
 
+@media (max-width: 544px) {
+  .ba-nav.ba-only-over-m .ba-item {
+    display: none !important;
+  }
+}
 .ba-container {
   padding-right: 15px;
   padding-left: 15px;
@@ -416,7 +552,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   margin-left: auto;
 }
 
-@media (min-width: 400px) {
+@media (min-width: 544px) {
   .ba-container {
     width: auto;
   }

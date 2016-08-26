@@ -1,0 +1,26 @@
+@import "../partials/variables";
+@import "../partials/mixins";
+$temp_value: $xl_width,
+$l_width,
+$m_width,
+$s_width,
+$xs_width;
+$temp_units: "xl",
+"l",
+"m",
+"s",
+"xs";
+.ba-only-xl {
+  display: block;
+}
+
+.ba-only-l,
+.ba-only-m,
+.ba-only-s,
+.ba-only-xs {
+  display: none;
+}
+@include only($temp_value, $temp_units);
+
+
+//@include only-over($temp_value, $temp_units);

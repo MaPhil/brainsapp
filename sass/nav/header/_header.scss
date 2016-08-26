@@ -3,7 +3,15 @@
 .ba-nav {
   @include opacityBlue($standart_heavines);
   padding: 2px;
-  &.ba-sicky {}
+  &.ba-nav.ba-only-over-m {
+    .ba-item {
+      display: block;
+    }
+  }
+  &.ba-sticky {
+    position: fixed;
+    width: 100%;
+  }
   .ba-header {
     .ba-left {
       float: left;
@@ -50,11 +58,27 @@
         border-bottom: 1px solid #fff;
       }
     }
+    .ba-burger {
+      z-index: 9;
+      line-height: 40px;
+      font-size: 18px;
+      padding: 0 10px;
+      color: white;
+      cursor: pointer;
+    }
     &:after {
       content: " ";
       display: block;
       height: 0;
       clear: both;
+    }
+  }
+}
+
+@media(max-width: $s_width) {
+  .ba-nav.ba-only-over-m {
+    .ba-item {
+      display: none !important;
     }
   }
 }
