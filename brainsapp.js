@@ -275,6 +275,7 @@
         }
       };
     });
+
     ba_ag_app.directive("timer", function () {
       return {
         restrict: 'EA',
@@ -290,6 +291,15 @@
 
 
     //injects all factories
+    ba_ag_app.factory('$baModal', function () {
+      console.log('bla');
+      return {
+        init: function (scope) {
+          console.log(scope);
+        }
+      };
+    });
+
   })();
 
 }());

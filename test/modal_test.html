@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="../brainsapp.css" rel="stylesheet">
+  <script src="../bower_components/angular/angular.min.js"></script>
+  <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <script src="../brainsapp.js"></script>
+</head>
+
+<body ng-app="testmasonry">
+  <div class="ba-container" ng-controller="MainController">
+  </div>
+</body>
+
+<script>
+  var app = angular.module("testmasonry", ['brainsapp']);
+  app.controller('MainController', function ($scope, $baModal, $timeout) {
+    $baModal.init($scope);
+  });
+</script>
+
+<script type="text/ng-template" id="modal.html">
+  <div style="border: 1px solid;border-radius: 5px;margin-bottom: 10px;padding: 15px;height:{{elem.height}}">{{elem.name}}</div>
+</script>
+
+</html>

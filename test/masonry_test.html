@@ -52,12 +52,16 @@
     $timeout(function () {
       var temp = generateEntries(10);
       $scope.elem = $scope.elem.concat(temp);
-    }, 40000)
+    }, 40000);
+    $scope.bla = function(){
+      alert('test');
+    }
   }]);
+
 </script>
 
 <script type="text/ng-template" id="panel.html">
-  <div style="border: 1px solid;border-radius: 5px;margin-bottom: 10px;padding: 15px;height:{{elem.height}}">{{elem.name}}</div>
+  <div ng-click="bla()" style="border: 1px solid;border-radius: 5px;margin-bottom: 10px;padding: 15px;height:{{elem.height}}">{{elem.name}}</div>
 </script>
 
 </html>

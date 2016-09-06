@@ -8,4 +8,5 @@
 
 
   //injects all factories
+  //=require factory/modal.js
 })();
