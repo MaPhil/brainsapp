@@ -14,7 +14,8 @@
   window.ba.util = {};
   //=require partials/functions.js
 
-
+  window.ba.workflow = {};
+  //=require event/workflow.js
 
   //click and mouse over stuff
   //=require event/dropdown.js
