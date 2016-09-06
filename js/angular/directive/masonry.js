@@ -3,7 +3,8 @@ ba_ag_app.directive("baMasonry", function () {
     restrict: 'E',
     replace: false,
     scope: {
-      elements: "="
+      elements: "=",
+      funcs: "=?"
     },
     template: $gulp_insert("templates/masonry.html"),
     controller: function ($scope, $element, $attrs, $timeout) {
@@ -20,7 +21,6 @@ ba_ag_app.directive("baMasonry", function () {
       config.order = '';
       config.elemIndex = 0;
       config.heights = [];
-
 
       var core = function (elem) {
         var w = document.getElementById(elem).offsetWidth;

@@ -128,16 +128,16 @@
   //random functions
   window.ba.util.random = {};
   window.ba.util.random.int = function (a, b) {
-    return Math.floor(Math.random() * (b - a + 1)) + a;
+      return Math.floor(Math.random() * (b - a + 1)) + a;
   };
   window.ba.util.random.float = function (a, b) {
-    return Math.random() * (b - a) + a;
+      return Math.random() * (b - a) + a;
   };
   window.ba.util.random.string = function (l) {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    for (var i = 0; i < l; i++) text += possible.charAt(Math.floor(Math.random() * possible.length));
-    return text;
+      var text = "";
+      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      for (var i = 0; i < l; i++) text += possible.charAt(Math.floor(Math.random() * possible.length));
+      return text;
   };
 
 
@@ -149,7 +149,7 @@
   $(function () {
     'use strict';
     $('.ba-dropbtn').on('click', function (e) {
-      $('#' + e.target.id + '.ba-dropdown-content').toggleClass("ba-show");
+      $('#'+e.target.id+'.ba-dropdown-content').toggleClass("ba-show");
     });
   });
   window.onclick = function (event) {
@@ -177,10 +177,11 @@
         restrict: 'E',
         replace: false,
         scope: {
-          elements: "="
+          elements: "=",
+          funcs: "=?"
         },
         template: "<div class=\"ba-masonry\" id=\"{{id}}\"><div class=\"ba-column\" id=\"masonry-column-{{$index}}\" ng-repeat=\"array in arrays track by $index\"><div ng-repeat=\"elem in array track by $index\"><span ng-if=\"template ==false\">{{elem}}</span><div ng-if=\"template != false\" ng-include=\"template\"></div></div></div></div>",
-        controller: function ($scope, $element, $attrs, $timeout, $state) {
+        controller: function ($scope, $element, $attrs, $timeout) {
 
           var config = {};
           config.column = {};
@@ -194,7 +195,6 @@
           config.order = '';
           config.elemIndex = 0;
           config.heights = [];
-
 
           var core = function (elem) {
             var w = document.getElementById(elem).offsetWidth;
@@ -272,13 +272,6 @@
               fill(t.slice());
             }
           }, true);
-
-          $scope.play = function (n) {
-            $state.go('abstract.play', {
-              'counter': 1,
-              'id': n
-            })
-          }
         }
       };
     });
@@ -288,7 +281,7 @@
         restrict: 'EA',
         replace: false,
         scope: {},
-        //    template: "<div class=\"ba-masonry\" id=\"{{id}}\"><div class=\"ba-column\" id=\"masonry-column-{{$index}}\" ng-repeat=\"array in arrays track by $index\"><div ng-repeat=\"elem in array track by $index\"><span ng-if=\"template ==false\">{{elem}}</span><div ng-if=\"template != false\" ng-include=\"template\"></div></div></div></div>",
+    //    template: "<div class=\"ba-masonry\" id=\"{{id}}\"><div class=\"ba-column\" id=\"masonry-column-{{$index}}\" ng-repeat=\"array in arrays track by $index\"><div ng-repeat=\"elem in array track by $index\"><span ng-if=\"template ==false\">{{elem}}</span><div ng-if=\"template != false\" ng-include=\"template\"></div></div></div></div>",
         controller: function ($scope, $element, $attrs) {
 
         }

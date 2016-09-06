@@ -18,7 +18,7 @@
 
 <body ng-app="testmasonry">
   <div class="ba-container" ng-controller="MainController">
-    <ba-masonry elements="elem" template="panel.html"></ba-masonry>
+    <ba-masonry elements="elem" funcs="bla" template="panel.html"></ba-masonry>
   </div>
 </body>
 <script>
@@ -53,15 +53,18 @@
       var temp = generateEntries(10);
       $scope.elem = $scope.elem.concat(temp);
     }, 40000);
-    $scope.bla = function(){
-      alert('test');
+
+
+    $scope.bla = {
+      bla: function () {
+        alert('test');
+      }
     }
   }]);
-
 </script>
 
 <script type="text/ng-template" id="panel.html">
-  <div ng-click="bla()" style="border: 1px solid;border-radius: 5px;margin-bottom: 10px;padding: 15px;height:{{elem.height}}">{{elem.name}}</div>
+  <div ng-click="funcs.bla()" style="border: 1px solid;border-radius: 5px;margin-bottom: 10px;padding: 15px;height:{{elem.height}}">{{elem.name}}</div>
 </script>
 
 </html>
