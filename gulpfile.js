@@ -60,6 +60,7 @@ gulp.task('compress-css', function () {
 // Watch Files For Changes
 gulp.task('watch', function () {
   gulp.watch('brainsapp.js', ['templating']);
+  gulp.watch('templates/**/*.html', ['lint', 'script']);
   gulp.watch('js/**/*.js', ['lint', 'script']);
   gulp.watch('sass/**/*.scss', ['compass']);
 });
@@ -71,7 +72,7 @@ gulp.task('default', ['compass', 'watch']);
 gulp.task('gulp-test', ['templating']);
 
 // Developent
-gulp.task('fortune', ['lint','script','compass','watch']);
+gulp.task('fortune', ['lint', 'script', 'compass', 'watch']);
 
 // Before commit
 gulp.task('compress', ['compress-css', 'compress-js'])

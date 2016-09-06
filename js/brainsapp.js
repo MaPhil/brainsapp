@@ -1,6 +1,9 @@
 (function () {
   'use strict';
+
+
   window.ba = {};
+  //=require partials/promise.js
 
   window.ba.var = {};
   //=require partials/variables.js
@@ -15,5 +18,5 @@
 
   //=require event/dropdown.js
 
-  //=require angular/directive.js
+  //=require angular/module.js
 }());

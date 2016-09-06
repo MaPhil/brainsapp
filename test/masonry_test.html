@@ -2,65 +2,43 @@
 <html>
 
 <head>
-    <link href="../brainsapp.css" rel="stylesheet">
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
-    <script src="../brainsapp.js"></script>
-    <script src="../bower_components/angular/angular.min.js"></script>
-    <script src="../js/masonry/masonry.js"></script>
-    <style>
-        .test-item {
-            margin-bottom: 10px;
-            border: 1px solid;
-        }
 
-    </style>
+  <link href="../brainsapp.css" rel="stylesheet">
+
+  <script src="../bower_components/angular/angular.min.js"></script>
+  <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <script src="../brainsapp.js"></script>
+  <style>
+    .test-item {
+      margin-bottom: 10px;
+      border: 1px solid;
+    }
+  </style>
 </head>
 
 <body ng-app="testmasonry">
-    <div class="ba-container" ng-controller="MainController">
-        <div id="masonry1" class="masonry">
-            <div class="item" ng-repeat="i in test">
-                <div class="panel test-item" ng-repeat=" a in i" style="height:{{a.height}}">
-                    {{a.name}}
-                </div>
-            </div>
-        </div>
-    </div>
+  <div class="ba-container" ng-controller="MainController">
+    <ba-masonry elements="elem" template="./masonry_panel.html"></ba-masonry>
+  </div>
 </body>
 <script>
-    console.log(window.ba)
-    var generateEntries = function(a) {
-        var out = new Array();
-        for (var i = 0; i < a; i++) {
-            out.push({
-                height: window.ba.util.random.int(50, 300) + 'px',
-                name: window.ba.util.random.string(10)
-            });
-        }
-        return out;
+  var generateEntries = function(a) {
+    var out = new Array();
+    for (var i = 0; i < a; i++) {
+      out.push({
+        height: window.ba.util.random.int(50, 300) + 'px',
+        name: window.ba.util.random.string(10)
+      });
     }
+    return out;
+  }
 
 </script>
 <script>
-    var app = angular.module("testmasonry", []);
-    app.controller('MainController', ['$scope', '$timeout', function($scope, $timeout) {
-        var testEntries = generateEntries(10);
-        $scope.test = JSON.parse(JSON.stringify(window.ba.masonry.init("masonry1", testEntries)));
-
-        window.addEventListener("resize", function() {
-            if (window.ba.masonry.current_colums !== window.ba.masonry.colums("masonry1")) {
-                $timeout(function() {
-                    $scope.test = JSON.parse(JSON.stringify(window.ba.masonry.resize("masonry1", $scope.test)))
-                })
-            }
-        });
-
-
-        //        $timeout(function() {
-        //            $scope.test = window.ba.masonry.resize("masonry1", $scope.test);
-        //            console.log($scope.test);
-        //        }, 1000)
-    }]);
+  var app = angular.module("testmasonry", ['brainsapp']);
+  app.controller('MainController', ['$scope', '$timeout', function($scope, $timeout) {
+    $scope.elem = generateEntries(10);
+  }]);
 
 </script>
 
