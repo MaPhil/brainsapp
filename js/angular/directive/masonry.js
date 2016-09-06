@@ -4,7 +4,7 @@ ba_ag_app.directive("baMasonry", function () {
     replace: false,
     scope: {
       elements: "=",
-      funcs: "=?"
+      outScope: "=?"
     },
     template: $gulp_insert("templates/masonry.html"),
     controller: function ($scope, $element, $attrs, $timeout) {

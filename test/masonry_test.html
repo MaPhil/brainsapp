@@ -18,7 +18,7 @@
 
 <body ng-app="testmasonry">
   <div class="ba-container" ng-controller="MainController">
-    <ba-masonry elements="elem" funcs="bla" template="panel.html"></ba-masonry>
+    <ba-masonry elements="elem" out-scope="bla" template="panel.html"></ba-masonry>
   </div>
 </body>
 <script>
@@ -64,7 +64,7 @@
 </script>
 
 <script type="text/ng-template" id="panel.html">
-  <div ng-click="funcs.bla()" style="border: 1px solid;border-radius: 5px;margin-bottom: 10px;padding: 15px;height:{{elem.height}}">{{elem.name}}</div>
+  <div ng-click="outScope.bla()" style="border: 1px solid;border-radius: 5px;margin-bottom: 10px;padding: 15px;height:{{elem.height}}">{{elem.name}}</div>
 </script>
 
 </html>

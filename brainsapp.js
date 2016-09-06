@@ -178,7 +178,7 @@
         replace: false,
         scope: {
           elements: "=",
-          funcs: "=?"
+          outScope: "=?"
         },
         template: "<div class=\"ba-masonry\" id=\"{{id}}\"><div class=\"ba-column\" id=\"masonry-column-{{$index}}\" ng-repeat=\"array in arrays track by $index\"><div ng-repeat=\"elem in array track by $index\"><span ng-if=\"template ==false\">{{elem}}</span><div ng-if=\"template != false\" ng-include=\"template\"></div></div></div></div>",
         controller: function ($scope, $element, $attrs, $timeout) {
