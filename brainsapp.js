@@ -89,6 +89,30 @@
   };
 
 
+  window.ba.array = {};
+  (function () {
+    window.ba.array.min = {};
+    window.ba.array.min.numEntry = function (a) {
+      if (typeof a === 'object' && a.length > 0) {
+        var min = 0;
+        for (var i = 0; i < a.length; i++) {
+          if (a[i] < a[min]) min = i;
+        }
+        return min;
+      } else return -2;
+    };
+    window.ba.array.min.entryLength = function () {
+      if (typeof a === 'object' && a.length > 0) {
+        var min = 0;
+        for (i = 0; i < a.length; i++) {
+          if (a[i].length < a[min].length) min = i;
+        }
+        return min;
+      } else return -2;
+    };
+  })();
+
+
   window.ba.var = {};
 
   window.ba.var.media_queries = {};
@@ -119,77 +143,8 @@
 
 
 
-  window.ba.masonry = {};
-  console.log('hallo');
-  window.ba.masonry.config = {};
-  window.ba.masonry.config.colum = {};
-  window.ba.masonry.config.colum.xl = 5;
-  window.ba.masonry.config.colum.l = 4;
-  window.ba.masonry.config.colum.m = 3;
-  window.ba.masonry.config.colum.s = 2;
 
-  (function () {
-      'use strict';
-
-
-
-      window.ba.masonry.init = function (elem, array) {
-          var cols = core(elem);
-          window.ba.masonry.current_colums = cols;
-          var o = [];
-          var i;
-          for (i = 0; i < cols; i++) {
-              o.push([]);
-          }
-          for (i = 0; i < array.length; i++) {
-              o[i % cols].push(array[i]);
-          }
-          setTimeout(function () {
-              window.ba.masonry.get_basic(elem);
-          }, 500);
-          return o;
-      };
-
-      window.ba.masonry.resize = function (elem, array) {
-          var cols = core(elem);
-          window.ba.masonry.current_colums = cols;
-          var o = [];
-          var i;
-
-          if (cols < array.length) {
-              for (i = 0; i < cols; i++) {
-                  o.push(array[i]);
-              }
-              array.splice(0, i);
-          } else {
-              for (i = 0; i < cols; i++) {
-                  o.push([]);
-              }
-          }
-          array = [].concat.apply([], array);
-          for (i = 0; i < array.length; i++) {
-              o[i % cols].push(array[i]);
-          }
-          return o;
-      };
-      window.ba.masonry.colums = function (elem) {
-          return core(elem);
-      };
-      var core = function (elem) {
-          var w = document.getElementById(elem).offsetWidth;
-          var mq = window.ba.var.media_queries;
-          var col = window.ba.masonry.config.colum;
-          if (w > mq.xl) return col.xl;
-          if (w < mq.xl && w > mq.l) return col.l;
-          if (w < mq.l && w > mq.m) return col.m;
-          if (w < mq.m) return col.s;
-      };
-
-
-
-  })();
-
-
+  //click and mouse over stuff
 
   $(function () {
     'use strict';
@@ -211,6 +166,7 @@
   };
 
 
+  //angular stuff
   (function () {
     'use strict';
     var ba_ag_app = angular.module('brainsapp', []);
@@ -223,7 +179,7 @@
         scope: {
           elements: "="
         },
-        template: "<div class=\"ba-masonry\" id=\"{{id}}\"><div ng-repeat=\"array in arrays track by $index\"><div ng-repeat=\"elem in array track by $index\"><span ng-if=\"template ==false\">{{elem}}</span><div ng-if=\"template != false\" ng-include=\"template\"></div></div></div></div>",
+        template: "<div class=\"ba-masonry\" id=\"{{id}}\"><div class=\"ba-column\" id=\"masonry-column-{{$index}}\" ng-repeat=\"array in arrays track by $index\"><div ng-repeat=\"elem in array track by $index\"><span ng-if=\"template ==false\">{{elem}}</span><div ng-if=\"template != false\" ng-include=\"template\"></div></div></div></div>",
         controller: function ($scope, $element, $attrs, $timeout) {
 
           var config = {};
@@ -237,6 +193,7 @@
           config.currentColumn = 5;
           config.order = '';
           config.elemIndex = 0;
+          config.heights = [];
 
 
           var core = function (elem) {
@@ -248,16 +205,48 @@
             if (w < mq.l && w > mq.m) return col.m;
             if (w < mq.m) return col.s;
           };
-          var init = function () {
+          var fill = function (a) {
+            var q = ba.q.defer();
+            var array = a;
+            var temp = window.ba.array.min.numEntry(config.heights);
             $timeout(function () {
-              $scope.arrays = new Array(config.currentColumn);
+              config.elemIndex++;
+              $scope.arrays[temp].push(array[0]);
+              $timeout(function () {
+                config.heights[temp] = $('#masonry-column-' + temp).height();
+                array.splice(0, 1);
+                if (array.length > 0) {
+                  fill(array).then(function () {
+                    q.done(null, null);
+                  });
+                } else {
+                  q.done(null, null);
+                }
+              }, 100);
             });
+            return q;
+          };
+          var init = function () {
+            var q = ba.q.defer();
+            $timeout(function () {
+              $scope.arrays = [];
+              config.heights = [];
+              for (var i = 0; i < config.currentColumn; i++) {
+                $scope.arrays.push([]);
+                config.heights.push(0);
+              }
+              q.done(null, null);
+            });
+            return q;
           };
 
           if (!$attrs.identifier && $attrs.identifier !== '') $scope.id = "masonry_" + window.ba.util.random.string(10);
           else $scope.id = $attrs.identifier;
           if (!$attrs.order && $attrs.order !== '') config.order = "bottom";
-          else config.order = $attrs.order;
+          else {
+            console.log('order is implemented as a parameter but has currently no effect');
+            config.order = $attrs.order;
+          }
           if (!$attrs.template && $attrs.template !== '') $scope.template = false;
           else $scope.template = $attrs.template;
 
@@ -267,22 +256,31 @@
               var temp = core($scope.id);
               if (config.currentColumn != temp) {
                 config.currentColumn = temp;
-                init();
+                init().then(function () {
+                  fill($scope.elements.slice());
+                });
               }
             });
-            init();
+            init().then(function () {
+              fill($scope.elements.slice());
+            });
           }, 150);
-
+          $scope.$watch('elements', function (o, n) {
+            if (o && n && o != n) {
+              var t = $scope.elements.slice();
+              t.splice(0, config.elemIndex);
+              fill(t.slice());
+            }
+          }, true);
         }
       };
     });
-
     ba_ag_app.directive("timer", function () {
       return {
         restrict: 'EA',
         replace: false,
         scope: {},
-    //    template: "<div class=\"ba-masonry\" id=\"{{id}}\"><div ng-repeat=\"array in arrays track by $index\"><div ng-repeat=\"elem in array track by $index\"><span ng-if=\"template ==false\">{{elem}}</span><div ng-if=\"template != false\" ng-include=\"template\"></div></div></div></div>",
+    //    template: "<div class=\"ba-masonry\" id=\"{{id}}\"><div class=\"ba-column\" id=\"masonry-column-{{$index}}\" ng-repeat=\"array in arrays track by $index\"><div ng-repeat=\"elem in array track by $index\"><span ng-if=\"template ==false\">{{elem}}</span><div ng-if=\"template != false\" ng-include=\"template\"></div></div></div></div>",
         controller: function ($scope, $element, $attrs) {
 
         }
@@ -290,6 +288,8 @@
     });
 
 
+
     //injects all factories
   })();
+
 }());

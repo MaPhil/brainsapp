@@ -18,11 +18,11 @@
 
 <body ng-app="testmasonry">
   <div class="ba-container" ng-controller="MainController">
-    <ba-masonry elements="elem" template="./masonry_panel.html"></ba-masonry>
+    <ba-masonry elements="elem" template="panel.html"></ba-masonry>
   </div>
 </body>
 <script>
-  var generateEntries = function(a) {
+  var generateEntries = function (a) {
     var out = new Array();
     for (var i = 0; i < a; i++) {
       out.push({
@@ -32,14 +32,32 @@
     }
     return out;
   }
-
 </script>
 <script>
   var app = angular.module("testmasonry", ['brainsapp']);
-  app.controller('MainController', ['$scope', '$timeout', function($scope, $timeout) {
+  app.controller('MainController', ['$scope', '$timeout', function ($scope, $timeout) {
     $scope.elem = generateEntries(10);
+    $timeout(function () {
+      var temp = generateEntries(10);
+      $scope.elem = $scope.elem.concat(temp);
+    }, 10000);
+    $timeout(function () {
+      var temp = generateEntries(10);
+      $scope.elem = $scope.elem.concat(temp);
+    }, 20000);
+    $timeout(function () {
+      var temp = generateEntries(10);
+      $scope.elem = $scope.elem.concat(temp);
+    }, 30000);
+    $timeout(function () {
+      var temp = generateEntries(10);
+      $scope.elem = $scope.elem.concat(temp);
+    }, 40000)
   }]);
+</script>
 
+<script type="text/ng-template" id="panel.html">
+  <div style="border: 1px solid;border-radius: 5px;margin-bottom: 10px;padding: 15px;height:{{elem.height}}">{{elem.name}}</div>
 </script>
 
 </html>

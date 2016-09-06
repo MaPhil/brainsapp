@@ -19,6 +19,7 @@ ba_ag_app.directive("baMasonry", function () {
       config.currentColumn = 5;
       config.order = '';
       config.elemIndex = 0;
+      config.heights = [];
 
 
       var core = function (elem) {
@@ -30,16 +31,48 @@ ba_ag_app.directive("baMasonry", function () {
         if (w < mq.l && w > mq.m) return col.m;
         if (w < mq.m) return col.s;
       };
-      var init = function () {
+      var fill = function (a) {
+        var q = ba.q.defer();
+        var array = a;
+        var temp = window.ba.array.min.numEntry(config.heights);
         $timeout(function () {
-          $scope.arrays = new Array(config.currentColumn);
+          config.elemIndex++;
+          $scope.arrays[temp].push(array[0]);
+          $timeout(function () {
+            config.heights[temp] = $('#masonry-column-' + temp).height();
+            array.splice(0, 1);
+            if (array.length > 0) {
+              fill(array).then(function () {
+                q.done(null, null);
+              });
+            } else {
+              q.done(null, null);
+            }
+          }, 100);
         });
+        return q;
+      };
+      var init = function () {
+        var q = ba.q.defer();
+        $timeout(function () {
+          $scope.arrays = [];
+          config.heights = [];
+          for (var i = 0; i < config.currentColumn; i++) {
+            $scope.arrays.push([]);
+            config.heights.push(0);
+          }
+          q.done(null, null);
+        });
+        return q;
       };
 
       if (!$attrs.identifier && $attrs.identifier !== '') $scope.id = "masonry_" + window.ba.util.random.string(10);
       else $scope.id = $attrs.identifier;
       if (!$attrs.order && $attrs.order !== '') config.order = "bottom";
-      else config.order = $attrs.order;
+      else {
+        console.log('order is implemented as a parameter but has currently no effect');
+        config.order = $attrs.order;
+      }
       if (!$attrs.template && $attrs.template !== '') $scope.template = false;
       else $scope.template = $attrs.template;
 
@@ -49,12 +82,22 @@ ba_ag_app.directive("baMasonry", function () {
           var temp = core($scope.id);
           if (config.currentColumn != temp) {
             config.currentColumn = temp;
-            init();
+            init().then(function () {
+              fill($scope.elements.slice());
+            });
           }
         });
-        init();
+        init().then(function () {
+          fill($scope.elements.slice());
+        });
       }, 150);
-
+      $scope.$watch('elements', function (o, n) {
+        if (o && n && o != n) {
+          var t = $scope.elements.slice();
+          t.splice(0, config.elemIndex);
+          fill(t.slice());
+        }
+      }, true);
     }
   };
 });

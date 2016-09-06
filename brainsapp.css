@@ -1000,7 +1000,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
     width: 100%;
   }
 }
-.masonry {
+.ba-masonry {
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -1010,7 +1010,7 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   width: 100%;
   align-items: flex-start;
 }
-.masonry .item {
+.ba-masonry .ba-column {
   -webkit-box-flex: 1;
   -webkit-flex: 1;
   -moz-box-flex: 1;

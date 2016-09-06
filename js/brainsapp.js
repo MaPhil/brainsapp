@@ -5,6 +5,9 @@
   window.ba = {};
   //=require partials/promise.js
 
+  window.ba.array = {};
+  //=require array/min.js
+
   window.ba.var = {};
   //=require partials/variables.js
 
@@ -12,11 +15,10 @@
   //=require partials/functions.js
 
 
-  window.ba.masonry = {};
-  //=require masonry/config.js
-  //=require masonry/masonry.js
 
+  //click and mouse over stuff
   //=require event/dropdown.js
 
+  //angular stuff
   //=require angular/module.js
 }());
