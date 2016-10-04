@@ -1,0 +1,17 @@
+<div class="ba-modal-content">
+  <div ng-if="templateUrl" ng-controller="{{controller}}" >
+    <div ng-include="templateUrl"></div>
+  </div>
+  <div ng-if="templateUrl == false">
+    <div class="ba-modal-header">
+      <span ng-if="hasClosigX" class="ba-close">×</span>
+      <h2>{{header}}</h2>
+    </div>
+    <div ng-if="kind.multi" class="ba-modal-body">
+
+    </div>
+    <div class="ba-modal-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
+</div>

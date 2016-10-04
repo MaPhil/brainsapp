@@ -48,10 +48,10 @@
   }
 }
 
-@mixin set-width-to-variable($classes, $column_count) {
+@mixin set-width-to-variable($class, $column_count) {
   @for $i from 1 through $column_count {
-    $width: percentage(($column_count - ($column_count - $i))/$column_count);
-    #{multi-selector-specific-grid($classes, $i)} {
+    $width: percentage(($column_count - ($column_count - (($column_count + 1) - $i)))/$column_count);
+    #{".ba-col-"}#{$class}#{"-"}#{(($column_count + 1) - $i)} {
       width: $width;
     }
   }

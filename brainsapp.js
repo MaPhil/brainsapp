@@ -165,6 +165,7 @@
     };
   };
 
+
   //click and mouse over stuff
 
   $(function () {
@@ -312,11 +313,11 @@
 
 
     //injects all factories
-    ba_ag_app.factory('$baModal', function () {
-      console.log('bla');
+    ba_ag_app.factory('$baModal', function ($rootElement) {
       return {
-        init: function (scope) {
-          console.log(scope);
+        template:['<ba-modal>',''],
+        init: function () {
+          $($rootElement[0]).html('bla');
         }
       };
     });
