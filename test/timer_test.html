@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <link href="../brainsapp.css" rel="stylesheet">
+
+  <script src="../bower_components/angular/angular.min.js"></script>
+  <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <script src="../brainsapp.js"></script>
+
+</head>
+
+<body ng-app="testTimer">
+  <div class="ba-container" ng-controller="MainController">
+    <div class="ba-row">
+      <div class="ba-col-xs-6">Timer mit default scope timer:{{timer}}</div>
+      <div class="ba-col-xs-6">Timer mit scope rudolf: {{rudolf}}</div>
+    </div>
+    <div class="ba-row" style="padding-top:20px;">
+      <div class="ba-col-xs-2" ng-click="start()">start</div>
+      <div class="ba-col-xs-2" ng-click="changeScope()">scope ändern</div>
+      <div class="ba-col-xs-2" ng-click="pause()">pause</div>
+      <div class="ba-col-xs-2" ng-click="resume()">weiter</div>
+      <div class="ba-col-xs-2" ng-click="stop()">stop</div>
+    </div>
+  </div>
+</body>
+<script>
+  var app = angular.module('testTimer', ['brainsapp']);
+  app.controller('MainController', function($scope, $rootScope, $baTimer, $timeout) {
+    $scope.start = function() {
+      $baTimer.start();
+    }
+    $scope.changeScope = function() {
+      $baTimer.setScope('rudolf');
+    }
+    $scope.pause = function() {
+      $baTimer.pause();
+    }
+    $scope.resume = function() {
+      $baTimer.resume();
+    }
+    $scope.stop = function() {
+      $baTimer.stop();
+    }
+  })
+
+</script>
+
+</html>

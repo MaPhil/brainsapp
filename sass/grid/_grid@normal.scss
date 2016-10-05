@@ -13,32 +13,7 @@
 }
 //truble shooting --- in progress
 @include test($class_names, $column_count);
-//$temp: "xl";
-//@include set-width-to-variable($temp, $column_count);
-//@media (min-width: $l_width) {
-//  $temp: "l";
-//  @include set-width-to-variable($temp, $column_count);
-//  $temp: "xl";
-//  @include set-width-to-100($temp, $column_count);
-//}
-//@media (min-width: $m_width) {
-//  $temp: "m";
-//  @include set-width-to-variable($temp, $column_count);
-//  $temp: "l", "xl";
-//  @include set-width-to-100($temp, $column_count);
-//}
-//@media (min-width: $s_width) {
-//  $temp: "s";
-//  @include set-width-to-variable($temp, $column_count);
-//  $temp: "m", "l", "xl";
-//  @include set-width-to-100($temp, $column_count);
-//}
-//@media (min-width: $xs_width) {
-//  $temp: "xs";
-//  @include set-width-to-variable($temp, $column_count);
-//  $temp: "l", "m", "s", "xl";
-//  @include set-width-to-100($temp, $column_count);
-//}
+
 $temp: "s",
 "m",
 "l",
@@ -68,32 +43,3 @@ $temp: "xs";
   $temp: "xl";
   @include set-width-to-variable($temp, $column_count);
 }
-//
-//@media(max-width: $xl_width) {
-//  $temp: "xl";
-//  @include set-width-to-variable($temp, $column_count);
-//}
-//@media(max-width: $l_width) {
-//  $temp: "l";
-//  @include set-width-to-variable($temp, $column_count);
-//}
-//@media(max-width: $m_width) {
-//  $temp: "xl", "l";
-//  @include set-width-to-100($temp, $column_count);
-//}
-//@media(max-width: $m_width) {
-//  $temp: "m";
-//  @include set-width-to-variable($temp, $column_count);
-//}
-//@media(max-width: $s_width) {
-//  $temp: "xl", "l", "m";
-//  @include set-width-to-100($temp, $column_count);
-//}
-//@media(max-width: $s_width) {
-//  $temp: "s";
-//  @include set-width-to-variable($temp, $column_count);
-//}
-//@media(max-width: $xs_width) {
-//  $temp: "xl", "l", "m", "s";
-//  @include set-width-to-100($temp, $column_count);
-//}

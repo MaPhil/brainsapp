@@ -7,6 +7,9 @@
   //=require directive/time.js
 
 
+  //injects all services
+  //=require service/timer.js
+
   //injects all factories
   //=require factory/modal.js
 })();
