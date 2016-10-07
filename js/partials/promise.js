@@ -4,7 +4,7 @@
  *  https://github.com/stackp/promisejs
  */
 /*
- * Heavily modified but with the help of this package not possible
+ * Heavily modified but without the help of this package not possible
  */
 
 
