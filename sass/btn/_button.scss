@@ -1,0 +1,85 @@
+@import "../partials/variables";
+@mixin setColor($colors, $names) {
+  @each $color in $colors {
+    &.ba-#{nth($names,index($colors,$color))} {
+      background-color: $color;
+      color: white;
+    }
+  }
+}
+@mixin setColorOutline($colors, $names) {
+  @each $color in $colors {
+    &.ba-#{nth($names,index($colors,$color))}#{'-outline'} {
+      border: 1px solid $color;
+      color: $color;
+    }
+  }
+}
+.ba-btn {
+  padding: 5px;
+  border-radius: 3px;
+  text-align: center;
+  display: inline-block;
+  &.ba-big{
+    padding: 15px;
+  }
+  &.ba-capitalize {
+    text-transform: capitalize;
+  }
+  &.ba-uppercase {
+    text-transform: uppercase;
+  }
+  &.ba-lowercase {
+    text-transform: lowercase;
+  }
+  &.ba-fine {
+    font-weight: 300;
+  }
+  &.ba-bold {
+    font-weight: 600;
+  }
+  &ba-bolder {
+    font-weight: 900;
+  }
+  &.ba-full {
+    width: 100%;
+  }
+  $tempNames:"turquoise",
+  "green_sea",
+  "sun_flower",
+  "emerald",
+  "forest",
+  "carrot",
+  "pumpkin",
+  "river",
+  "deep_see",
+  "chilli",
+  "pomegranate",
+  "lilac",
+  "cloud",
+  "silver",
+  "wet_asphalt",
+  "midnight",
+  "concrete",
+  "asbestos";
+  $tempColors:$turquoise,
+  $green_sea,
+  $sun_flower,
+  $emerald,
+  $forest,
+  $carrot,
+  $pumpkin,
+  $river,
+  $deep_see,
+  $chilli,
+  $pomegranate,
+  $lilac,
+  $cloud,
+  $silver,
+  $wet_asphalt,
+  $midnight,
+  $concrete,
+  $asbestos;
+  @include setColor($tempColors, $tempNames);
+  @include setColorOutline($tempColors, $tempNames);
+}

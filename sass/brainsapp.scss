@@ -2,8 +2,8 @@
 
 //import essentials
 @import "partials/base";
-//@import "partials/variables";
-//@import "partials/normalize";
+@import "partials/variables";
+@import "partials/normalize";
 
 //import grids
 @import "grid/grid@normal";
@@ -16,6 +16,10 @@
 
 //import btn
 @import "btn/dropdown";
+@import "btn/button";
+
+//import modal
+@import "modal/modal";
 
 //import header
 @import "nav/header/header";

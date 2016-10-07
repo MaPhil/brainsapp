@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="../brainsapp.css" rel="stylesheet">
   <script src="../bower_components/angular/angular.min.js"></script>
   <script src="../bower_components/jquery/dist/jquery.js"></script>
@@ -10,13 +11,53 @@
 
 <body ng-app="testmasonry">
   <div class="ba-container" ng-controller="MainController">
+    <div ng-click="alert()">alert</div>
+    <div ng-click="alertImg()">alertImg</div>
+    <div ng-click="show()">show</div>
+    <div ng-click="showImg()">showImg</div>
+    <div ng-click="confirm()">confirm</div>
+    <div ng-click="confirmImg()">confirmImg</div>
+    <div ng-click="prompt()">prompt</div>
+    <div ng-click="promptImg()">promptImg</div>
   </div>
 </body>
 
 <script>
   var app = angular.module("testmasonry", ['brainsapp']);
-  app.controller('MainController', function ($scope, $baModal, $timeout) {
-    $baModal.init();
+  app.controller('MainController', function ($scope, $element, $baModal, $timeout) {
+    $scope.test = new $baModal();
+    $scope.alert = function () {
+      $scope.test.alert('Das ist ein Alert')
+    }
+    $scope.alertImg = function () {
+      $scope.test.alertImg('https://pbs.twimg.com/profile_images/616542814319415296/McCTpH_E.jpg')
+    }
+    $scope.show = function () {
+      $scope.test.show('bla')
+    }
+    $scope.showImg = function () {
+      $scope.test.showImg('https://pbs.twimg.com/profile_images/616542814319415296/McCTpH_E.jpg')
+    }
+    $scope.confirm = function () {
+      $scope.test.confirm('bla').then(function (data) {
+        console.log(data);
+      })
+    }
+    $scope.confirmImg = function () {
+      $scope.test.confirmImg('https://pbs.twimg.com/profile_images/616542814319415296/McCTpH_E.jpg').then(function (data) {
+        console.log(data);
+      })
+    }
+    $scope.prompt = function () {
+      $scope.test.prompt('bla').then(function (data) {
+        console.log(data);
+      })
+    }
+    $scope.promptImg = function () {
+      $scope.test.promptImg('https://pbs.twimg.com/profile_images/616542814319415296/McCTpH_E.jpg').then(function (data) {
+        console.log(data);
+      })
+    }
   });
 </script>
 

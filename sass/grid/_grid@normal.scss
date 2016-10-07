@@ -1,19 +1,18 @@
 @import "../partials/variables";
 @import "../partials/mixins";
 .ba-row {
-  clear: both;
   margin-right: -15px;
   margin-left: -15px;
-  &:befor,
-  :after {
+  &:after {
     content: " ";
-    display: table;
+    display: block;
+    height: 0;
     clear: both;
   }
 }
+
 //truble shooting --- in progress
 @include test($class_names, $column_count);
-
 $temp: "s",
 "m",
 "l",
@@ -27,18 +26,21 @@ $temp: "xs";
   $temp: "s";
   @include set-width-to-variable($temp, $column_count);
 }
+
 @media (min-width: $m_width) {
   $temp: "l", "xl";
   @include set-width-to-100($temp, $column_count);
   $temp: "m";
   @include set-width-to-variable($temp, $column_count);
 }
+
 @media (min-width: $l_width) {
   $temp: "xl";
   @include set-width-to-100($temp, $column_count);
   $temp: "l";
   @include set-width-to-variable($temp, $column_count);
 }
+
 @media (min-width: $xl_width) {
   $temp: "xl";
   @include set-width-to-variable($temp, $column_count);

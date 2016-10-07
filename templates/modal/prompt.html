@@ -1,0 +1,28 @@
+<div id="{{id}}">
+  <div id="ba-modal" class="ba-modal-confirm ">
+    <div class="ba-content ba-container-m-6">
+
+      <div class="ba-header">
+
+      </div>
+      <div class="ba-body">
+        <span ng-if="!image">{{text}}</span>
+        <div class="ba-image" ng-if="image" style="background-image:url({{text}})"></div>
+        <div class="ba-form">
+
+          <input class="ba-input" ng-model="tiped">
+        </div>
+      </div>
+      <div class="ba-footer">
+        <div class="ba-row">
+          <div class="ba-col-xs-6">
+            <div ng-click="close(tiped)" class="ba-btn ba-concrete-outline ba-uppercase ba-fine ba-full">{{t.cancle}}</div>
+          </div>
+          <div class="ba-col-xs-6">
+            <div ng-click="close(tiped)" class="ba-btn ba-emerald ba-uppercase ba-fine ba-full">{{t.ok}}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

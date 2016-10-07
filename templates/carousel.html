@@ -1,5 +1,16 @@
-<div class="ba-carousell">
-  <div class="ba-carousell-header"></div>
-  <div class="ba-carousell-body"></div>
-  <div class="ba-carousell-footer"></div>
+<div class="ba-carousel">
+  <div ng-if="headerTemplate && headerTemplate!=''" ng:class="{true:'hasHeader',false:''}[headerTemplate && headerTemplate!='']" class="ba-carousel-header">
+    <div ng-include="headerTemplate"></div>
+  </div>
+  <div class="ba-carousel-body">
+    <div ng-repeat="elem in carousel" class="ba-item ba-item-{{$index}}" ng-class="[{true:'ba-very-left'}[$index<(index-1)],{true:'ba-left'}[$index==(index-1)],{true:'ba-center'}[$index==index],{true:'ba-right'}[$index==(index+1)]]">
+      <div ng-if="template && template!=''" style="height:100%;" ng-include="template"></div>
+      <div ng-if="!template || template==''">
+        {{$index}} {{elem}}
+      </div>
+    </div>
+  </div>
+  <div  ng-if="footerTemplate && footerTemplate!=''" ng:class="{true:'hasFooter',false:''}[footerTemplate && footerTemplate!='']" class="ba-carousel-footer">
+    <div ng-include="footerTemplate"></div>
+  </div>
 </div>
