@@ -1,5 +1,158 @@
+var baDate;
 (function () {
   'use strict';
+
+  //brainsapp data types
+  baDate = function (a, b) {
+    var t;
+    if (!a && !b) {
+      t = new Date();
+      this.date = t;
+      this.ar = t;
+    } else if (a && !b) {
+      if (a instanceof Date) {
+
+
+        this.date = a;
+        this.ar = [a.getDate(), (a.getMonth() + 1), a.getFullYear(), a.getHours(), a.getMinutes(), a.getSeconds(), a.getMilliseconds()];
+
+      } else if (a instanceof baDate) {
+
+        this.date = a.date;
+        this.ar = a.ar;
+      } else if (typeof a === 'string') {
+
+
+        if ((/[0-9]{1,2}[\.\/\-\:\,\;](1[0-2]|[1-9]|0[1-9])[\.\/\-\:\,\;][0-9]{2,4}(([\.\/\-\:\,\;][0-9]{1,2}){2,4}|([\.\/\-\:\,\;][0-9]{1,3}){0})/g).test(a)) {
+          t = a.split(/[\.\/\-\:\,\;]/g);
+          for (var k = 0; k < t.length; k++) t[k] = parseInt(t[k]);
+          this.ar = t;
+
+          this.date = new Date(t[2], t[1], t[0]);
+          this.date.setHours(((t[3] !== undefined) ? t[3] : 0), ((t[4] !== undefined) ? t[4] : 0), ((t[5] !== undefined) ? t[5] : 0), ((t[6] !== undefined) ? t[6] : 0));
+        } else {
+          console.error('invalid Date format please use d.m.y.h.m.s.ms as pattern');
+        }
+      }
+    } else if (a && b) {
+      var te = b.split(/[\.\/\-\:\,\;]/g);
+      t = a.split(/[\.\/\-\:\,\;]/g);
+      for (var j = 0; j < t.length; j++) t[j] = parseInt(t[j]);
+      this.ar = t;
+
+      var setDate = [];
+      var i = te.indexOf('d');
+      setDate.push(t[i] - 1);
+      i = te.indexOf('m');
+      setDate.push(t[i] - 1);
+      i = te.indexOf('y');
+      setDate.push(t[i] - 1);
+      this.date = new Date(t[2], t[1], t[0]);
+      i = te.indexOf('h');
+      if (i != -1) {
+        this.date.setHours(t[i]);
+      }
+      i = te.indexOf('mi');
+      if (i != -1) {
+        this.date.setHours(t[i]);
+      }
+      i = te.indexOf('s');
+      if (i != -1) {
+        this.date.setHours(t[i]);
+      }
+      i = te.indexOf('ms');
+      if (i != -1) {
+        this.date.setHours(t[i]);
+      }
+
+    }
+  };
+
+  baDate.prototype.get = function (a) {
+    var temp;
+    if (!a) return this.ar[0] + '-' + this.ar[1] + '-' + this.ar[2];
+    else if (a == 'd') return this.ar[0];
+    else if (a == 'm') return this.ar[1];
+    else if (a == 'y') return this.ar[2];
+    else if (a == 'h') return this.ar[3];
+    else if (a == 'mi') return this.ar[4];
+    else if (a == 's') return this.ar[5];
+    else if (a == 'ms') return this.ar[6];
+    else if (a == 'time') return this.ar[3] + ':' + this.ar[4] + ':' + this.ar[5] + ':' + this.ar[6];
+    else if (a == 'weekDay') return this.date.getDay();
+    else if (a == 'daysCount') return ba.date.config.monthDays[this.ar[1]];
+    else if (a == 'dayOfMonth') {
+      return this.date.getDate();
+    } else if (a == 'firstWeekDayOfMonth') {
+      temp = new Date(this.ar[2], this.ar[1]-1, 1);
+      return temp.getDay();
+    } else if (a == 'lastWeekDayOfMonth') {
+      temp = new Date(this.ar[2], (this.ar[1]), 0);
+      return temp.getDay();
+    }
+  };
+  baDate.prototype.set = function (a, b) {
+    var t;
+    if (a == 'd') this.ar[0] = b;
+    else if (a == 'm') this.ar[1] = b;
+    else if (a == 'y') this.ar[2] = b;
+    else if (a == 'h') this.ar[3] = b;
+    else if (a == 'mi') this.ar[4] = b;
+    else if (a == 's') this.ar[5] = b;
+    else if (a == 'ms') this.ar[6] = b;
+    else if (a == 'time') {
+      t = b.split(/[\.\/\-\:\,\;]/g);
+      this.ar[3] = ((t[0] !== undefined) ? t[0] : 0);
+      this.ar[4] = ((t[1] !== undefined) ? t[1] : 0);
+      this.ar[5] = ((t[2] !== undefined) ? t[2] : 0);
+      this.ar[6] = ((t[3] !== undefined) ? t[3] : 0);
+    } else if (a == 'date') {
+      t = b.split(/[\.\/\-\:\,\;]/g);
+      this.ar[0] = ((t[0] !== undefined) ? t[0] : 1);
+      this.ar[1] = ((t[1] !== undefined) ? t[1] : 1);
+      this.ar[2] = ((t[2] !== undefined) ? t[2] : 1991);
+    } else if (a == 'fullDate') {
+      t = b.split(/[\.\/\-\:\,\;]/g);
+      this.ar[0] = ((t[0] !== undefined) ? t[0] : 1);
+      this.ar[1] = ((t[1] !== undefined) ? t[1] : 1);
+      this.ar[2] = ((t[2] !== undefined) ? t[2] : 1991);
+      this.ar[3] = ((t[3] !== undefined) ? t[3] : 0);
+      this.ar[4] = ((t[4] !== undefined) ? t[4] : 0);
+      this.ar[5] = ((t[5] !== undefined) ? t[5] : 0);
+      this.ar[6] = ((t[6] !== undefined) ? t[6] : 0);
+    }
+    this.date = new Date(parseInt(this.ar[2]), parseInt(this.ar[1]), this.ar[0]);
+    this.date.setHours(((this.ar[3] !== undefined) ? this.ar[3] : 0), ((this.ar[4] !== undefined) ? this.ar[4] : 0), ((this.ar[5] !== undefined) ? this.ar[5] : 0), ((this.ar[6] !== undefined) ? this.ar[6] : 0));
+  };
+  baDate.prototype.subtract = function (a, b) {
+
+  };
+  baDate.prototype.add = function (a, b) {
+
+  };
+  baDate.prototype.isBefore = function (a) {
+
+  };
+  baDate.prototype.isAfter = function (a) {
+
+  };
+  baDate.prototype.isBeforeEqual = function (a) {
+
+  };
+  baDate.prototype.isAfterEqual = function (a) {
+
+  };
+  baDate.prototype.isEqual = function (a) {
+
+  };
+  baDate.prototype.futur = function () {
+
+  };
+  baDate.prototype.past = function () {
+
+  };
+
+
 
 
   window.ba = {};
@@ -9,7 +162,7 @@
    *  https://github.com/stackp/promisejs
    */
   /*
-   * Heavily modified but with the help of this package not possible
+   * Heavily modified but without the help of this package not possible
    */
 
 
@@ -138,6 +291,24 @@
       var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
       for (var i = 0; i < l; i++) text += possible.charAt(Math.floor(Math.random() * possible.length));
       return text;
+  };
+
+
+
+  window.ba.date = {};
+  ba.date.config = {};
+
+  ba.date.config.monthDays = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+  ba.date.config.day = 7;
+  ba.date.config.month = 12;
+
+  ba.date.config.lang = {
+    days: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'],
+    daysShort: ['Mo.', 'Di.', 'Mi.', 'Do.', 'Fr.', 'Sa.', 'So.'],
+    month: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+    monthShort: ['Jan.','Feb.','Mär.','Apr.','Mai.','Jun.','Jul.','Aug.','Sep.','Okt.','Nov.','Dez.'],
+    time: ['Stunden', 'Minuten', 'Sekunden'],
+    timeShort: ['Std.', 'Min.', 'Sek.']
   };
 
 
@@ -324,7 +495,7 @@
         },
         template: "<div class=\"ba-carousel\"><div ng-if=\"headerTemplate && headerTemplate!=''\" ng:class=\"{true:'hasHeader',false:''}[headerTemplate && headerTemplate!='']\" class=\"ba-carousel-header\"><div ng-include=\"headerTemplate\"></div></div><div class=\"ba-carousel-body\"><div ng-repeat=\"elem in carousel\" class=\"ba-item ba-item-{{$index}}\" ng-class=\"[{true:'ba-very-left'}[$index<(index-1)],{true:'ba-left'}[$index==(index-1)],{true:'ba-center'}[$index==index],{true:'ba-right'}[$index==(index+1)]]\"><div ng-if=\"template && template!=''\" style=\"height:100%;\" ng-include=\"template\"></div><div ng-if=\"!template || template==''\">{{$index}} {{elem}}</div></div></div><div  ng-if=\"footerTemplate && footerTemplate!=''\" ng:class=\"{true:'hasFooter',false:''}[footerTemplate && footerTemplate!='']\" class=\"ba-carousel-footer\"><div ng-include=\"footerTemplate\"></div></div></div>",
         controller: function ($scope, $element, $attrs, $timeout) {
-          console.log($scope.elements);
+          console.log($scope);
           $scope.index = 0;
           $scope.carousel = [];
           for (var i=0; i < $scope.elements.length; i++) {
@@ -333,6 +504,99 @@
               id: 'carousel_' + window.ba.util.random.string(16)
             });
           }
+        }
+      };
+    });
+
+    ba_ag_app.directive('baDatePicker', function () {
+      return {
+        restrict: 'E',
+        replace: false,
+        scope: {
+          ngModel: "=",
+          text: "=?",
+          jsDate: "=?"
+        },
+        template: "<div class=\"ba-date-picker\"><span ng-click=\"open()\"><input readonly ng-model=\"display\" type=\"text\" /></span><div class=\"ba-calender\" ng:class=\"{true:'ba-active'}[isOpen]\"><div class=\"ba-control\"><div class=\"ba-dynamic-row\"><div class=\"ba-dynamic-col ba-dynamic-col-7\"><span style=\"padding-right: 5px;\">{{text.month[center.month-1]}}</span><span>{{center.year}}</span></div><div class=\"ba-dynamic-col\"><div class=\"ba-dynamic-row\"><div class=\"ba-dynamic-col ba-control-elements\" ng-click=\"newMonth(center.month-1)\">◀</div><div class=\"ba-dynamic-col ba-control-elements\" ng-click=\"newMonth(current.month)\">●</div><div class=\"ba-dynamic-col ba-control-elements\" ng-click=\"newMonth(center.month+1)\">▶</div></div></div></div></div><div class=\"ba-sub\"><div class=\"ba-head\"><div class=\"ba-week-day\" ng-repeat=\"_ in ((_ = []) && (_.length=config.day) && _) track by $index\" >{{text.daysShort[$index]}}</div></div><div class=\"ba-body\" ng-class=\"changeClass\"><div class=\"ba-week-day ba-gray\" ng-repeat=\"_ in ((_ = []) && (_.length=(center.beginning - 1)) && _) track by $index\" ng-click=\"newMonth(center.month-1)\">{{config.monthDays[center.month - 2] - ((center.beginning-2)- $index)}}</div><div class=\"ba-week-day\" ng-repeat=\"_ in ((_ = []) && (_.length=config.monthDays[center.month-1]) && _) track by $index\" ng:class=\"{true:'ba-selected'}[($index+1) == current.dayOfMonth && center.month == current.month && center.year == current.year]\" ng-click=\"selectDay($index+1)\">{{$index+1}}</div><div class=\"ba-week-day ba-gray\" ng-repeat=\"_ in ((_ = []) && (_.length=(7-center.ending)) && _) track by $index\" ng-click=\"newMonth(center.month+1)\">{{$index+1}}</div></div></div></div></div>",
+        controller: function ($scope, $element, $attrs, $timeout) {
+          if (!$scope.text) $scope.text = ba.date.config.lang;
+          $scope.config = ba.date.config;
+
+          $scope.center = {};
+          $scope.display = '';
+          if (!$scope.ngModel) $scope.center.date = new baDate(new Date());
+          else {
+            $scope.center.date = new baDate($scope.ngModel);
+            $scope.display = $scope.center.date.get();
+          }
+
+
+          $scope.center.beginning = $scope.center.date.get('firstWeekDayOfMonth');
+          $scope.center.ending = $scope.center.date.get('lastWeekDayOfMonth');
+          $scope.center.month = $scope.center.date.get('m');
+          $scope.center.year = $scope.center.date.get('y');
+          $scope.current = {
+            month: $scope.center.month,
+            year: $scope.center.year,
+            dayOfMonth: $scope.center.date.get('dayOfMonth'),
+          };
+
+          $scope.selectDay = function (a) {
+            var temp = $scope.center.date;
+            temp.set('d', a);
+            $timeout(function () {
+              $scope.center = {
+                date: temp
+              };
+              $scope.center.beginning = $scope.center.date.get('firstWeekDayOfMonth');
+              $scope.center.ending = $scope.center.date.get('lastWeekDayOfMonth');
+              $scope.center.month = $scope.center.date.get('m');
+              $scope.center.year = $scope.center.date.get('y');
+            });
+            $scope.current = {
+              month: $scope.center.month,
+              year: $scope.center.year,
+              dayOfMonth: $scope.center.date.get('dayOfMonth'),
+            };
+            $timeout(function () {
+              if ($scope.jsDate !== undefined && $scope.jsDate === false) $scope.ngModel = $scope.center.date;
+              else $scope.ngModel = $scope.center.date.date;
+              $timeout(function () {
+                $scope.display = $scope.center.date.get();
+                $scope.open();
+              }, 1000);
+            });
+          };
+          $scope.changeClass = '';
+          var newMonthUtil = function () {
+            var q = ba.q.defer();
+            $scope.changeClass = 'ba-hide';
+            $timeout(function () {
+
+              $scope.changeClass = 'ba-show';
+              q.done(null, true);
+            }, 500);
+            return q;
+          };
+          $scope.newMonth = function (a) {
+            newMonthUtil().then(function () {
+              var temp = $scope.center.date;
+              temp.set('m', a);
+              $timeout(function () {
+                $scope.center = {
+                  date: temp
+                };
+                $scope.center.beginning = $scope.center.date.get('firstWeekDayOfMonth');
+                $scope.center.ending = $scope.center.date.get('lastWeekDayOfMonth');
+                $scope.center.month = $scope.center.date.get('m');
+                $scope.center.year = $scope.center.date.get('y');
+              });
+            });
+          };
+          $scope.isOpen = false;
+          $scope.open = function () {
+            $scope.isOpen = !$scope.isOpen;
+          };
         }
       };
     });

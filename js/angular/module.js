@@ -6,6 +6,7 @@
   //=require directive/masonry.js
   //=require directive/time.js
   //=require directive/carousel.js
+  //=require directive/date.js
 
 
 

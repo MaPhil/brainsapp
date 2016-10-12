@@ -1,5 +1,10 @@
+var baDate;
 (function () {
   'use strict';
+
+  //brainsapp data types
+  //=require date/date.js
+
 
 
   window.ba = {};
@@ -13,6 +18,10 @@
 
   window.ba.util = {};
   //=require partials/functions.js
+
+  window.ba.date = {};
+  //=require date/config.js
+  //=require date/compare.js
 
   window.ba.workflow = {};
   //=require event/workflow.js

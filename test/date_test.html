@@ -31,32 +31,37 @@
   </style>
 </head>
 
-<body ng-app="carousell">
-  <div class="ba-container" ng-controller="MainController">
-    <ba-carousel index="i" template="'test.html'" elements="elements" out-scope="bla"></ba-carousel>
+<body ng-app="date">
+  <div style="    padding-top: 50px;" class="ba-container" ng-controller="MainController">
+    <ba-date-picker text="t[l]" ng-model="test"></ba-date-picker>
+    <div>Bla bla</div>
+    <input type="text" style="width:100%"/>
   </div>
 </body>
 <script>
-  var app = angular.module('carousell', ['brainsapp']);
+  var app = angular.module('date', ['brainsapp']);
   app.controller('MainController', function($scope, $rootScope, $timeout, $interval) {
-    $scope.elements = [
-      'bla1',
-      'bla2',
-      'bla3',
-      'bla4',
-      'bla5',
-      'bla6',
-      'bla7'
-    ]
-    $scope.bla = {
-      bla: function() {
-        alert('test');
+
+
+
+
+//    $scope.test = new baDate("12.11.2016");
+
+    $scope.l = 'de';
+    $scope.t = {
+      de: {
+        days: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'],
+        daysShort: ['Mo.', 'Di.', 'Mi.', 'Do.', 'Fr.', 'Sa.', 'So.'],
+        month: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+        monthShort: ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember'],
+        time: ['Stunden', 'Minuten', 'Sekunden'],
+        timeShort: ['Std.', 'Min.', 'Sek.']
       }
     }
-    $scope.i = 0;
-    $interval(function() {
-      $scope.i++;
-    }, 5000, $scope.elements.length);
+
+    $scope.$watch('test', function() {
+      console.log($scope.test);
+    })
   })
 
 </script>

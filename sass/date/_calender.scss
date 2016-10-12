@@ -1,0 +1,75 @@
+.ba-calender {
+  border: 1px solid #ddd;
+  padding: 10px;
+  max-width: 400px;
+  position: absolute;
+  .ba-control {
+    padding: 10px 0px;
+    .ba-control-elements {
+      text-align: center;
+      padding: 0;
+    }
+  }
+  .ba-sub {
+    border: 1px solid #3498db;
+    padding: 2px;
+    .ba-head {
+      margin-bottom: 5px;
+      border-bottom: 1px solid #ddd;
+      .ba-week-day {
+        background-color: #eee;
+      }
+      &:after {
+        content: " ";
+        display: block;
+        height: 0;
+        clear: both;
+      }
+    }
+    .ba-body {
+      -webkit-transition: all 0.4s;
+      /* Safari */
+      transition: all 0.4s;
+      &.ba-hide {
+        opacity: 0;
+      }
+      &.ba-show {
+        opacity: 1;
+      }
+      &:after {
+        content: " ";
+        display: block;
+        height: 0;
+        clear: both;
+      }
+    }
+    .ba-week-day {
+      cursor: pointer;
+      float: left;
+      width: 14.285%;
+      padding: 10px 2px;
+      text-align: center;
+      &.ba-gray {
+        color: #bdc3c7;
+      }
+      &.ba-selected {
+        color: #2ecc71;
+        border: 2px solid;
+        padding: 8px 0px;
+        font-weight: 600;
+      }
+      &.ba-today {
+        color: #bdc3c7;
+      }
+      &:hover {
+        background-color: #eee;
+      }
+    }
+    &:after {
+      content: " ";
+      display: block;
+      height: 0;
+      clear: both;
+    }
+  }
+}

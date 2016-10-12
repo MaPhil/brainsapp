@@ -12,7 +12,7 @@ ba_ag_app.directive('baCarousel', function () {
     },
     template: $gulp_insert("templates/carousel.html"),
     controller: function ($scope, $element, $attrs, $timeout) {
-      console.log($scope.elements);
+      console.log($scope);
       $scope.index = 0;
       $scope.carousel = [];
       for (var i=0; i < $scope.elements.length; i++) {

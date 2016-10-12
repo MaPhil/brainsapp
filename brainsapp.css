@@ -1934,3 +1934,96 @@ th {
 .ba-carousel .ba-carousel-body.hasHeader.hasFooter {
   height: calc(100% - 110px);
 }
+
+.ba-calender {
+  border: 1px solid #ddd;
+  padding: 10px;
+  max-width: 400px;
+  position: absolute;
+}
+.ba-calender .ba-control {
+  padding: 10px 0px;
+}
+.ba-calender .ba-control .ba-control-elements {
+  text-align: center;
+  padding: 0;
+}
+.ba-calender .ba-sub {
+  border: 1px solid #3498db;
+  padding: 2px;
+}
+.ba-calender .ba-sub .ba-head {
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ddd;
+}
+.ba-calender .ba-sub .ba-head .ba-week-day {
+  background-color: #eee;
+}
+.ba-calender .ba-sub .ba-head:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+}
+.ba-calender .ba-sub .ba-body {
+  -webkit-transition: all 0.4s;
+  /* Safari */
+  transition: all 0.4s;
+}
+.ba-calender .ba-sub .ba-body.ba-hide {
+  opacity: 0;
+}
+.ba-calender .ba-sub .ba-body.ba-show {
+  opacity: 1;
+}
+.ba-calender .ba-sub .ba-body:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+}
+.ba-calender .ba-sub .ba-week-day {
+  cursor: pointer;
+  float: left;
+  width: 14.285%;
+  padding: 10px 2px;
+  text-align: center;
+}
+.ba-calender .ba-sub .ba-week-day.ba-gray {
+  color: #bdc3c7;
+}
+.ba-calender .ba-sub .ba-week-day.ba-selected {
+  color: #2ecc71;
+  border: 2px solid;
+  padding: 8px 0px;
+  font-weight: 600;
+}
+.ba-calender .ba-sub .ba-week-day.ba-today {
+  color: #bdc3c7;
+}
+.ba-calender .ba-sub .ba-week-day:hover {
+  background-color: #eee;
+}
+.ba-calender .ba-sub:after {
+  content: " ";
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+.ba-date-picker {
+  position: relative;
+}
+.ba-date-picker input {
+  width: 100%;
+  padding: 5px;
+}
+.ba-date-picker .ba-calender {
+  margin-top: 10px;
+  z-index: 99;
+  background-color: white;
+  display: none;
+}
+.ba-date-picker .ba-calender.ba-active {
+  display: block;
+}
