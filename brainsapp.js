@@ -277,22 +277,37 @@ var baDate;
 
 
   window.ba.util = {};
-
   //random functions
   window.ba.util.random = {};
   window.ba.util.random.int = function (a, b) {
-      return Math.floor(Math.random() * (b - a + 1)) + a;
+    return Math.floor(Math.random() * (b - a + 1)) + a;
   };
   window.ba.util.random.float = function (a, b) {
-      return Math.random() * (b - a) + a;
+    return Math.random() * (b - a) + a;
   };
   window.ba.util.random.string = function (l) {
-      var text = "";
-      var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-      for (var i = 0; i < l; i++) text += possible.charAt(Math.floor(Math.random() * possible.length));
-      return text;
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for (var i = 0; i < l; i++) text += possible.charAt(Math.floor(Math.random() * possible.length));
+    return text;
   };
 
+
+  window.ba.util.array = {};
+  window.ba.util.array.addOnlyNew = function (a, b) {
+    var i;
+    for (i = 0; i < a.length; i++) a[i] = JSON.stringify(a[i]);
+    for (i = 0; i < b.length; i++) b[i] = JSON.stringify(b[i]);
+
+    for (i = 0; i < b.length; i++) {
+      var t = a.indexOf(b[i]);
+      if (t == -1) {
+        a.push(b[i]);
+      }
+    }
+    for (i = 0; i < a.length; i++) a[i] = JSON.parse(a[i]);
+    return a;
+  };
 
 
   window.ba.date = {};
@@ -371,6 +386,7 @@ var baDate;
         replace: false,
         scope: {
           elements: "=",
+          newelements: "=",
           outScope: "=?"
         },
         template: "<div class=\"ba-masonry\" id=\"{{id}}\"><div class=\"ba-column\" id=\"masonry-column-{{$index}}\" ng-repeat=\"array in arrays track by $index\"><div ng-repeat=\"elem in array track by $index\"><span ng-if=\"template ==false\">{{elem}}</span><div ng-if=\"template != false\" ng-include=\"template\"></div></div></div></div>",
@@ -454,15 +470,14 @@ var baDate;
                 });
               }
             });
+            console.log('asdfghj')
             init().then(function () {
               fill($scope.elements.slice());
             });
           }, 150);
-          $scope.$watch('elements', function (o, n) {
+          $scope.$watch('newelements', function (o, n) {
             if (o && n && o != n) {
-              var t = $scope.elements.slice();
-              t.splice(0, config.elemIndex);
-              fill(t.slice());
+              fill(o.slice());
             }
           }, true);
         }
@@ -519,7 +534,7 @@ var baDate;
         },
         template: "<div class=\"ba-date-picker\"><span ng-click=\"open()\"><input readonly ng-model=\"display\" type=\"text\" /></span><div class=\"ba-calender\" ng:class=\"{true:'ba-active'}[isOpen]\"><div class=\"ba-control\"><div class=\"ba-dynamic-row\"><div class=\"ba-dynamic-col ba-dynamic-col-7\"><span style=\"padding-right: 5px;\">{{text.month[center.month-1]}}</span><span>{{center.year}}</span></div><div class=\"ba-dynamic-col\"><div class=\"ba-dynamic-row\"><div class=\"ba-dynamic-col ba-control-elements\" ng-click=\"newMonth(center.month-1)\">◀</div><div class=\"ba-dynamic-col ba-control-elements\" ng-click=\"newMonth(current.month)\">●</div><div class=\"ba-dynamic-col ba-control-elements\" ng-click=\"newMonth(center.month+1)\">▶</div></div></div></div></div><div class=\"ba-sub\"><div class=\"ba-head\"><div class=\"ba-week-day\" ng-repeat=\"_ in ((_ = []) && (_.length=config.day) && _) track by $index\" >{{text.daysShort[$index]}}</div></div><div class=\"ba-body\" ng-class=\"changeClass\"><div class=\"ba-week-day ba-gray\" ng-repeat=\"_ in ((_ = []) && (_.length=(center.beginning - 1)) && _) track by $index\" ng-click=\"newMonth(center.month-1)\">{{config.monthDays[center.month - 2] - ((center.beginning-2)- $index)}}</div><div class=\"ba-week-day\" ng-repeat=\"_ in ((_ = []) && (_.length=config.monthDays[center.month-1]) && _) track by $index\" ng:class=\"{true:'ba-selected'}[($index+1) == current.dayOfMonth && center.month == current.month && center.year == current.year]\" ng-click=\"selectDay($index+1)\">{{$index+1}}</div><div class=\"ba-week-day ba-gray\" ng-repeat=\"_ in ((_ = []) && (_.length=(7-center.ending)) && _) track by $index\" ng-click=\"newMonth(center.month+1)\">{{$index+1}}</div></div></div></div></div>",
         controller: function ($scope, $element, $attrs, $timeout) {
-          if (!$scope.text) $scope.text = ba.date.config.lang;
+          if (!$scope.text || $scope.text === '') $scope.text = ba.date.config.lang;
           $scope.config = ba.date.config;
 
           $scope.center = {};

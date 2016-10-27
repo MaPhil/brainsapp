@@ -18,7 +18,7 @@
 
 <body ng-app="testmasonry">
   <div class="ba-container" ng-controller="MainController">
-    <ba-masonry elements="elem" out-scope="bla" template="panel.html"></ba-masonry>
+    <ba-masonry elements="elem" out-scope="bla" newelements="newElem" template="panel.html"></ba-masonry>
   </div>
 </body>
 <script>
@@ -37,21 +37,18 @@
   var app = angular.module("testmasonry", ['brainsapp']);
   app.controller('MainController', ['$scope', '$timeout', function ($scope, $timeout) {
     $scope.elem = generateEntries(10);
+    $scope.newElem = [];
     $timeout(function () {
-      var temp = generateEntries(10);
-      $scope.elem = $scope.elem.concat(temp);
+      $scope.newElem = generateEntries(10);
     }, 10000);
     $timeout(function () {
-      var temp = generateEntries(10);
-      $scope.elem = $scope.elem.concat(temp);
+      $scope.newElem = generateEntries(10);
     }, 20000);
     $timeout(function () {
-      var temp = generateEntries(10);
-      $scope.elem = $scope.elem.concat(temp);
+      $scope.newElem = generateEntries(10);
     }, 30000);
     $timeout(function () {
-      var temp = generateEntries(10);
-      $scope.elem = $scope.elem.concat(temp);
+      $scope.newElem = generateEntries(10);
     }, 40000);
 
 

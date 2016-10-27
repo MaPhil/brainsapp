@@ -4,6 +4,7 @@ ba_ag_app.directive("baMasonry", function () {
     replace: false,
     scope: {
       elements: "=",
+      newelements: "=",
       outScope: "=?"
     },
     template: $gulp_insert("templates/masonry.html"),
@@ -87,15 +88,14 @@ ba_ag_app.directive("baMasonry", function () {
             });
           }
         });
+        console.log('asdfghj')
         init().then(function () {
           fill($scope.elements.slice());
         });
       }, 150);
-      $scope.$watch('elements', function (o, n) {
+      $scope.$watch('newelements', function (o, n) {
         if (o && n && o != n) {
-          var t = $scope.elements.slice();
-          t.splice(0, config.elemIndex);
-          fill(t.slice());
+          fill(o.slice());
         }
       }, true);
     }

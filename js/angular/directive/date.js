@@ -9,7 +9,7 @@ ba_ag_app.directive('baDatePicker', function () {
     },
     template: $gulp_insert("templates/date/datePicker.html"),
     controller: function ($scope, $element, $attrs, $timeout) {
-      if (!$scope.text) $scope.text = ba.date.config.lang;
+      if (!$scope.text || $scope.text === '') $scope.text = ba.date.config.lang;
       $scope.config = ba.date.config;
 
       $scope.center = {};
