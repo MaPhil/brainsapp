@@ -422,7 +422,8 @@ var baDate;
             console.log(temp)
             $timeout(function () {
               config.elemIndex++;
-              $scope.arrays[temp].push(array[0]);
+              if(temp !== -2)$scope.arrays[temp].push(array[0]);
+              else $scope.arrays[0].push(array[0]);
               $timeout(function () {
                 config.heights[temp] = $('#masonry-column-' + temp).height();
                 array.splice(0, 1);
