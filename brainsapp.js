@@ -480,16 +480,22 @@ var baDate;
               fill($scope.elements.slice());
             });
           }, 150);
+          var hasStarted = false;
           $scope.$watch('newelements', function (o, n) {
             if (o && n && o != n) {
-              console.log(o ,n);
-              fill(o.slice());
+              if (!hasStarted) {
+                $timeout(function () {
+                  hasStarted = true;
+                  fill(o.slice());
+                }, 200);
+              } else {
+                fill(o.slice());
+              }
             }
           }, true);
         }
       };
     });
-
     ba_ag_app.directive("timer", function () {
       return {
         restrict: 'EA',
