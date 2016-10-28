@@ -36,8 +36,6 @@ ba_ag_app.directive("baMasonry", function () {
         var q = ba.q.defer();
         var array = a;
         var temp = window.ba.array.min.numEntry(config.heights);
-        console.log(config.heights)
-        console.log(temp)
         $timeout(function () {
           config.elemIndex++;
           if(temp !== -2)$scope.arrays[temp].push(array[0]);
@@ -91,7 +89,6 @@ ba_ag_app.directive("baMasonry", function () {
             });
           }
         });
-        console.log('asdfghj')
         init().then(function () {
           fill($scope.elements.slice());
         });

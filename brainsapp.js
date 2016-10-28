@@ -389,7 +389,7 @@ var baDate;
           newelements: "=",
           outScope: "=?"
         },
-        template: $gulp_insert("templates/masonry.html"),
+        template: "<div class=\"ba-masonry\" id=\"{{id}}\"><div class=\"ba-column\" id=\"masonry-column-{{$index}}\" ng-repeat=\"array in arrays track by $index\"><div ng-repeat=\"elem in array track by $index\"><span ng-if=\"template ==false\">{{elem}}</span><div ng-if=\"template != false\" ng-include=\"template\"></div></div></div></div>",
         controller: function ($scope, $element, $attrs, $timeout) {
 
           var config = {};
@@ -418,8 +418,6 @@ var baDate;
             var q = ba.q.defer();
             var array = a;
             var temp = window.ba.array.min.numEntry(config.heights);
-            console.log(config.heights)
-            console.log(temp)
             $timeout(function () {
               config.elemIndex++;
               if(temp !== -2)$scope.arrays[temp].push(array[0]);
@@ -473,7 +471,6 @@ var baDate;
                 });
               }
             });
-            console.log('asdfghj')
             init().then(function () {
               fill($scope.elements.slice());
             });
@@ -493,7 +490,7 @@ var baDate;
         restrict: 'EA',
         replace: false,
         scope: {},
-    //    template: $gulp_insert("templates/masonry.html"),
+    //    template: "<div class=\"ba-masonry\" id=\"{{id}}\"><div class=\"ba-column\" id=\"masonry-column-{{$index}}\" ng-repeat=\"array in arrays track by $index\"><div ng-repeat=\"elem in array track by $index\"><span ng-if=\"template ==false\">{{elem}}</span><div ng-if=\"template != false\" ng-include=\"template\"></div></div></div></div>",
         controller: function ($scope, $element, $attrs) {
 
         }
@@ -512,7 +509,7 @@ var baDate;
           template: "=?",
           index: "=?"
         },
-        template: $gulp_insert("templates/carousel.html"),
+        template: "<div class=\"ba-carousel\"><div ng-if=\"headerTemplate && headerTemplate!=''\" ng:class=\"{true:'hasHeader',false:''}[headerTemplate && headerTemplate!='']\" class=\"ba-carousel-header\"><div ng-include=\"headerTemplate\"></div></div><div class=\"ba-carousel-body\"><div ng-repeat=\"elem in carousel\" class=\"ba-item ba-item-{{$index}}\" ng-class=\"[{true:'ba-very-left'}[$index<(index-1)],{true:'ba-left'}[$index==(index-1)],{true:'ba-center'}[$index==index],{true:'ba-right'}[$index==(index+1)]]\"><div ng-if=\"template && template!=''\" style=\"height:100%;\" ng-include=\"template\"></div><div ng-if=\"!template || template==''\">{{$index}} {{elem}}</div></div></div><div  ng-if=\"footerTemplate && footerTemplate!=''\" ng:class=\"{true:'hasFooter',false:''}[footerTemplate && footerTemplate!='']\" class=\"ba-carousel-footer\"><div ng-include=\"footerTemplate\"></div></div></div>",
         controller: function ($scope, $element, $attrs, $timeout) {
           console.log($scope);
           $scope.index = 0;
@@ -536,7 +533,7 @@ var baDate;
           text: "=?",
           jsDate: "=?"
         },
-        template: $gulp_insert("templates/date/datePicker.html"),
+        template: "<div class=\"ba-date-picker\"><span ng-click=\"open()\"><input readonly ng-model=\"display\" type=\"text\" /></span><div class=\"ba-calender\" ng:class=\"{true:'ba-active'}[isOpen]\"><div class=\"ba-control\"><div class=\"ba-dynamic-row\"><div class=\"ba-dynamic-col ba-dynamic-col-7\"><span style=\"padding-right: 5px;\">{{text.month[center.month-1]}}</span><span>{{center.year}}</span></div><div class=\"ba-dynamic-col\"><div class=\"ba-dynamic-row\"><div class=\"ba-dynamic-col ba-control-elements\" ng-click=\"newMonth(center.month-1)\">◀</div><div class=\"ba-dynamic-col ba-control-elements\" ng-click=\"newMonth(current.month)\">●</div><div class=\"ba-dynamic-col ba-control-elements\" ng-click=\"newMonth(center.month+1)\">▶</div></div></div></div></div><div class=\"ba-sub\"><div class=\"ba-head\"><div class=\"ba-week-day\" ng-repeat=\"_ in ((_ = []) && (_.length=config.day) && _) track by $index\" >{{text.daysShort[$index]}}</div></div><div class=\"ba-body\" ng-class=\"changeClass\"><div class=\"ba-week-day ba-gray\" ng-repeat=\"_ in ((_ = []) && (_.length=(center.beginning - 1)) && _) track by $index\" ng-click=\"newMonth(center.month-1)\">{{config.monthDays[center.month - 2] - ((center.beginning-2)- $index)}}</div><div class=\"ba-week-day\" ng-repeat=\"_ in ((_ = []) && (_.length=config.monthDays[center.month-1]) && _) track by $index\" ng:class=\"{true:'ba-selected'}[($index+1) == current.dayOfMonth && center.month == current.month && center.year == current.year]\" ng-click=\"selectDay($index+1)\">{{$index+1}}</div><div class=\"ba-week-day ba-gray\" ng-repeat=\"_ in ((_ = []) && (_.length=(7-center.ending)) && _) track by $index\" ng-click=\"newMonth(center.month+1)\">{{$index+1}}</div></div></div></div></div>",
         controller: function ($scope, $element, $attrs, $timeout) {
           if (!$scope.text || $scope.text === '') $scope.text = ba.date.config.lang;
           $scope.config = ba.date.config;
@@ -682,11 +679,11 @@ var baDate;
     //injects all factories
     ba_ag_app.factory('$baModal', ['$animate', '$rootElement', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateRequest', '$timeout', function ($animate, $rootElement, $compile, $controller, $http, $rootScope, $q, $templateRequest, $timeout) {
       var templates = {
-        alert:$gulp_insert("templates/modal/alert.html"),
-        show:$gulp_insert("templates/modal/show.html"),
-        confirm:$gulp_insert("templates/modal/confirm.html"),
-        prompt:$gulp_insert("templates/modal/prompt.html"),
-        custom:$gulp_insert("templates/modal/custom.html"),
+        alert:"<div id=\"{{id}}\"><div id=\"ba-modal\" class=\"ba-modal-alert \"><div class=\"ba-content\"><div class=\"ba-body\"><span ng-if=\"!image\">{{text}}</span><div class=\"ba-image\" ng-if=\"image\" style=\"background-image:url({{text}})\"></div></div><div class=\"ba-footer\"><div ng-click=\"close()\" class=\"ba-btn ba-emerald ba-uppercase ba-fine ba-full\">Ok</div></div></div></div></div>",
+        show:"<div ng-click=\"close()\" id=\"{{id}}\"><div id=\"ba-modal\" class=\"ba-modal-show\"><div class=\"ba-content ba-container\"><div class=\"ba-body\"><span ng-if=\"!image\">{{text}}</span><div class=\"ba-image\" ng-if=\"image\" style=\"background-image:url({{text}})\"></div></div></div></div></div>",
+        confirm:"<div id=\"{{id}}\"><div id=\"ba-modal\" class=\"ba-modal-confirm \"><div class=\"ba-content ba-container\"><div class=\"ba-body\"><span ng-if=\"!image\">{{text}}</span><div class=\"ba-image\" ng-if=\"image\" style=\"background-image:url({{text}})\"></div></div><div class=\"ba-footer\"><div class=\"ba-row\"><div class=\"ba-col-xs-6\"><div ng-click=\"close(false)\" class=\"ba-btn ba-concrete-outline ba-uppercase ba-fine ba-full\">{{t.cancle}}</div></div><div class=\"ba-col-xs-6\"><div ng-click=\"close(true)\" class=\"ba-btn ba-emerald ba-uppercase ba-fine ba-full\">{{t.ok}}</div></div></div></div></div></div></div>",
+        prompt:"<div id=\"{{id}}\"><div id=\"ba-modal\" class=\"ba-modal-confirm \"><div class=\"ba-content ba-container-m-6\"><div class=\"ba-body\"><span ng-if=\"!image\">{{text}}</span><div class=\"ba-image\" ng-if=\"image\" style=\"background-image:url({{text}})\"></div><div class=\"ba-form\"><input class=\"ba-input\" ng-model=\"tiped\"></div></div><div class=\"ba-footer\"><div class=\"ba-row\"><div class=\"ba-col-xs-6\"><div ng-click=\"close(tiped)\" class=\"ba-btn ba-concrete-outline ba-uppercase ba-fine ba-full\">{{t.cancle}}</div></div><div class=\"ba-col-xs-6\"><div ng-click=\"close(tiped)\" class=\"ba-btn ba-emerald ba-uppercase ba-fine ba-full\">{{t.ok}}</div></div></div></div></div></div></div>",
+        custom:"",
       };
       var usedText = {
         de: {
@@ -745,153 +742,6 @@ var baDate;
             id = 'ba-modal-' + window.ba.util.random.string(16);
           closeQ = $q.defer();
           compile(templates.alert, function ($scope, id, languageText, close) {
-            $scope.image = false;
-            $scope.t = languageText;
-            $scope.id = id;
-            $scope.text = text;
-            $scope.close = function () {
-
-              close(null, id);
-            };
-          }, id);
-          mainQ.resolve(closeQ.promise);
-          return mainQ.promise;
-        },
-        alertImg: function (img) {
-          var mainQ = $q.defer(),
-            id = 'ba-modal-' + window.ba.util.random.string(16);
-          closeQ = $q.defer();
-          compile(templates.alert, function ($scope, id, languageText, close) {
-            $scope.image = true;
-            $scope.t = languageText;
-            $scope.id = id;
-            $scope.text = img;
-            $scope.close = function () {
-
-              close(null, id);
-            };
-          }, id);
-          mainQ.resolve(closeQ.promise);
-          return mainQ.promise;
-        },
-        show: function (text, duration) {
-          var mainQ = $q.defer(),
-            id = 'ba-modal-' + window.ba.util.random.string(16);
-          closeQ = $q.defer();
-          compile(templates.show, function ($scope, id, languageText, close) {
-            $scope.image = false;
-            $scope.id = id;
-            $scope.text = text;
-            if (!duration) duration = 5000;
-            $scope.close = function(){
-              close(null, id);
-            };
-            $timeout(function () {
-              $scope.close();
-            }, duration);
-          }, id);
-          mainQ.resolve(closeQ.promise);
-          return mainQ.promise;
-        },
-        showImg: function (img, duration) {
-          var mainQ = $q.defer(),
-            id = 'ba-modal-' + window.ba.util.random.string(16);
-          closeQ = $q.defer();
-          compile(templates.show, function ($scope, id, languageText, close) {
-            $scope.image = true;
-            $scope.id = id;
-            $scope.text = img;
-            if (!duration) duration = 5000;
-            $scope.close = function(){
-              close(null, id);
-            };
-            $timeout(function () {
-              $scope.close();
-            }, duration);
-          }, id);
-          mainQ.resolve(closeQ.promise);
-          return mainQ.promise;
-        },
-        confirm: function (text) {
-          var mainQ = $q.defer(),
-            id = 'ba-modal-' + window.ba.util.random.string(16);
-          closeQ = $q.defer();
-          compile(templates.confirm, function ($scope, id, languageText, close) {
-            $scope.t = languageText;
-            $scope.image = false;
-            $scope.id = id;
-            $scope.text = text;
-            $scope.close = function (a) {
-
-              close(a, id);
-            };
-          }, id);
-          mainQ.resolve(closeQ.promise);
-          return mainQ.promise;
-        },
-        confirmImg: function (img) {
-          var mainQ = $q.defer(),
-            id = 'ba-modal-' + window.ba.util.random.string(16);
-          closeQ = $q.defer();
-          compile(templates.confirm, function ($scope, id, languageText, close) {
-            $scope.t = languageText;
-            $scope.image = true;
-            $scope.id = id;
-            $scope.text = img;
-            $scope.close = function (a) {
-
-              close(a, id);
-            };
-          }, id);
-          mainQ.resolve(closeQ.promise);
-          return mainQ.promise;
-        },
-        prompt: function (text) {
-          var mainQ = $q.defer(),
-            id = 'ba-modal-' + window.ba.util.random.string(16);
-          closeQ = $q.defer();
-          compile(templates.prompt, function ($scope, id, languageText, close) {
-            $scope.t = languageText;
-            $scope.image = false;
-            $scope.id = id;
-            $scope.text = text;
-            $scope.close = function (a) {
-              close(a, id);
-            };
-          }, id);
-          mainQ.resolve(closeQ.promise);
-          return mainQ.promise;
-        },
-        promptImg: function (img) {
-          var mainQ = $q.defer(),
-            id = 'ba-modal-' + window.ba.util.random.string(16);
-          closeQ = $q.defer();
-          compile(templates.prompt, function ($scope, id, languageText, close) {
-            $scope.t = languageText;
-            $scope.image = true;
-            $scope.id = id;
-            $scope.text = img;
-            $scope.close = function (a) {
-              close(a, id);
-            };
-          }, id);
-          mainQ.resolve(closeQ.promise);
-          return mainQ.promise;
-        },
-        promptArray: function (array) {
-          this.array = array;
-        },
-        custom: function (templateName, controllerName) {
-
-        },
-      };
-      return Modal;
-    }]);
-
-  })();
-
-}());
-id, languageText, close) {
             $scope.image = false;
             $scope.t = languageText;
             $scope.id = id;
