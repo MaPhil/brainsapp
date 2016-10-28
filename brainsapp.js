@@ -482,13 +482,14 @@ var baDate;
           }, 150);
           $scope.$watch('newelements', function (o, n) {
             if (o && n && o != n) {
-              console.log('test');
+              console.log(o ,n);
               fill(o.slice());
             }
           }, true);
         }
       };
     });
+
     ba_ag_app.directive("timer", function () {
       return {
         restrict: 'EA',
