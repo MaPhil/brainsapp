@@ -11,23 +11,23 @@ var baDate;
       this.ar = t;
     } else if (a && !b) {
       if (a instanceof Date) {
-
-
+  
+  
         this.date = a;
         this.ar = [a.getDate(), (a.getMonth() + 1), a.getFullYear(), a.getHours(), a.getMinutes(), a.getSeconds(), a.getMilliseconds()];
-
+  
       } else if (a instanceof baDate) {
-
+  
         this.date = a.date;
         this.ar = a.ar;
       } else if (typeof a === 'string') {
-
-
+  
+  
         if ((/[0-9]{1,2}[\.\/\-\:\,\;](1[0-2]|[1-9]|0[1-9])[\.\/\-\:\,\;][0-9]{2,4}(([\.\/\-\:\,\;][0-9]{1,2}){2,4}|([\.\/\-\:\,\;][0-9]{1,3}){0})/g).test(a)) {
           t = a.split(/[\.\/\-\:\,\;]/g);
           for (var k = 0; k < t.length; k++) t[k] = parseInt(t[k]);
           this.ar = t;
-
+  
           this.date = new Date(t[2], t[1], t[0]);
           this.date.setHours(((t[3] !== undefined) ? t[3] : 0), ((t[4] !== undefined) ? t[4] : 0), ((t[5] !== undefined) ? t[5] : 0), ((t[6] !== undefined) ? t[6] : 0));
         } else {
@@ -39,7 +39,7 @@ var baDate;
       t = a.split(/[\.\/\-\:\,\;]/g);
       for (var j = 0; j < t.length; j++) t[j] = parseInt(t[j]);
       this.ar = t;
-
+  
       var setDate = [];
       var i = te.indexOf('d');
       setDate.push(t[i] - 1);
@@ -64,10 +64,10 @@ var baDate;
       if (i != -1) {
         this.date.setHours(t[i]);
       }
-
+  
     }
   };
-
+  
   baDate.prototype.get = function (a) {
     var temp;
     if (!a) return this.ar[0] + '-' + this.ar[1] + '-' + this.ar[2];
@@ -125,33 +125,33 @@ var baDate;
     this.date.setHours(((this.ar[3] !== undefined) ? this.ar[3] : 0), ((this.ar[4] !== undefined) ? this.ar[4] : 0), ((this.ar[5] !== undefined) ? this.ar[5] : 0), ((this.ar[6] !== undefined) ? this.ar[6] : 0));
   };
   baDate.prototype.subtract = function (a, b) {
-
+  
   };
   baDate.prototype.add = function (a, b) {
-
+  
   };
   baDate.prototype.isBefore = function (a) {
-
+  
   };
   baDate.prototype.isAfter = function (a) {
-
+  
   };
   baDate.prototype.isBeforeEqual = function (a) {
-
+  
   };
   baDate.prototype.isAfterEqual = function (a) {
-
+  
   };
   baDate.prototype.isEqual = function (a) {
-
+  
   };
   baDate.prototype.futur = function () {
-
+  
   };
   baDate.prototype.past = function () {
-
+  
   };
-
+  
 
 
 
@@ -164,8 +164,8 @@ var baDate;
   /*
    * Heavily modified but without the help of this package not possible
    */
-
-
+  
+  
   var Promise = function () {
     this.cbs = [];
     this.then = function (func) {
@@ -194,15 +194,15 @@ var baDate;
   var paralell = function (promises) {
     var p = new Promise();
     var results = [];
-
+  
     if (!promises || !promises.length) {
       p.done(results);
       return p;
     }
-
+  
     var numdone = 0;
     var total = promises.length;
-
+  
     function notifier(i) {
       return function () {
         numdone += 1;
@@ -212,11 +212,11 @@ var baDate;
         }
       };
     }
-
+  
     for (var i = 0; i < total; i++) {
       promises[i].then(notifier(i));
     }
-
+  
     return p;
   };
   var waterfall = function (funcs, args) {
@@ -240,7 +240,7 @@ var baDate;
     paralell: paralell,
     waterfall: waterfall,
   };
-
+  
 
   window.ba.array = {};
   (function () {
@@ -264,17 +264,17 @@ var baDate;
       } else return -2;
     };
   })();
-
+  
 
   window.ba.var = {};
-
+  
   window.ba.var.media_queries = {};
   window.ba.var.media_queries.xl = 1200;
   window.ba.var.media_queries.l = 992;
   window.ba.var.media_queries.m = 768;
   window.ba.var.media_queries.s = 544;
   window.ba.var.media_queries.xs = 400;
-
+  
 
   window.ba.util = {};
   //random functions
@@ -291,14 +291,14 @@ var baDate;
     for (var i = 0; i < l; i++) text += possible.charAt(Math.floor(Math.random() * possible.length));
     return text;
   };
-
-
+  
+  
   window.ba.util.array = {};
   window.ba.util.array.addOnlyNew = function (a, b) {
     var i;
     for (i = 0; i < a.length; i++) a[i] = JSON.stringify(a[i]);
     for (i = 0; i < b.length; i++) b[i] = JSON.stringify(b[i]);
-
+  
     for (i = 0; i < b.length; i++) {
       var t = a.indexOf(b[i]);
       if (t == -1) {
@@ -308,15 +308,15 @@ var baDate;
     for (i = 0; i < a.length; i++) a[i] = JSON.parse(a[i]);
     return a;
   };
-
+  
 
   window.ba.date = {};
   ba.date.config = {};
-
+  
   ba.date.config.monthDays = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   ba.date.config.day = 7;
   ba.date.config.month = 12;
-
+  
   ba.date.config.lang = {
     days: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag'],
     daysShort: ['Mo.', 'Di.', 'Mi.', 'Do.', 'Fr.', 'Sa.', 'So.'],
@@ -325,8 +325,8 @@ var baDate;
     time: ['Stunden', 'Minuten', 'Sekunden'],
     timeShort: ['Std.', 'Min.', 'Sek.']
   };
-
-
+  
+  
 
   window.ba.workflow = {};
   window.ba.workflow.init = function () {
@@ -350,10 +350,10 @@ var baDate;
       }
     };
   };
-
+  
 
   //click and mouse over stuff
-
+  
   $(function () {
     'use strict';
     $('.ba-dropbtn').on('click', function (e) {
@@ -372,13 +372,13 @@ var baDate;
       }
     }
   };
-
+  
 
   //angular stuff
   (function () {
     'use strict';
     var ba_ag_app = angular.module('brainsapp', []);
-
+  
     //injects all directives
     ba_ag_app.directive("baMasonry", function () {
       return {
@@ -391,20 +391,20 @@ var baDate;
         },
         template: "<div class=\"ba-masonry\" id=\"{{id}}\"><div class=\"ba-column\" id=\"masonry-column-{{$index}}\" ng-repeat=\"array in arrays track by $index\"><div ng-repeat=\"elem in array track by $index\"><span ng-if=\"template ==false\">{{elem}}</span><div ng-if=\"template != false\" ng-include=\"template\"></div></div></div></div>",
         controller: function ($scope, $element, $attrs, $timeout) {
-
+    
           var config = {};
           config.column = {};
           config.column.xl = 5;
           config.column.l = 4;
           config.column.m = 3;
           config.column.s = 2;
-
+    
           //in action
           config.currentColumn = 5;
           config.order = '';
           config.elemIndex = 0;
           config.heights = [];
-
+    
           var core = function (elem) {
             var w = document.getElementById(elem).offsetWidth;
             var mq = window.ba.var.media_queries;
@@ -420,8 +420,13 @@ var baDate;
             var temp = window.ba.array.min.numEntry(config.heights);
             $timeout(function () {
               config.elemIndex++;
-              if(temp !== -2)$scope.arrays[temp].push(array[0]);
-              else $scope.arrays[0].push(array[0]);
+              if (temp !== -2) {
+                console.log($scope.arrays);
+                $scope.arrays[temp].push(array[0]);
+              } else {
+                console.log($scope.arrays);
+                $scope.arrays[0].push(array[0]);
+              }
               $timeout(function () {
                 config.heights[temp] = $('#masonry-column-' + temp).height();
                 array.splice(0, 1);
@@ -449,7 +454,7 @@ var baDate;
             });
             return q;
           };
-
+    
           if (!$attrs.identifier && $attrs.identifier !== '') $scope.id = "masonry_" + window.ba.util.random.string(10);
           else $scope.id = $attrs.identifier;
           if (!$attrs.order && $attrs.order !== '') config.order = "bottom";
@@ -459,7 +464,7 @@ var baDate;
           }
           if (!$attrs.template && $attrs.template !== '') $scope.template = false;
           else $scope.template = $attrs.template;
-
+    
           $timeout(function () {
             config.currentColumn = core($scope.id);
             $(window).resize(function (e) {
@@ -484,7 +489,6 @@ var baDate;
         }
       };
     });
-
     ba_ag_app.directive("timer", function () {
       return {
         restrict: 'EA',
@@ -492,11 +496,11 @@ var baDate;
         scope: {},
     //    template: "<div class=\"ba-masonry\" id=\"{{id}}\"><div class=\"ba-column\" id=\"masonry-column-{{$index}}\" ng-repeat=\"array in arrays track by $index\"><div ng-repeat=\"elem in array track by $index\"><span ng-if=\"template ==false\">{{elem}}</span><div ng-if=\"template != false\" ng-include=\"template\"></div></div></div></div>",
         controller: function ($scope, $element, $attrs) {
-
+    
         }
       };
     });
-
+    
     ba_ag_app.directive('baCarousel', function () {
       return {
         restrict: 'E',
@@ -523,7 +527,7 @@ var baDate;
         }
       };
     });
-
+    
     ba_ag_app.directive('baDatePicker', function () {
       return {
         restrict: 'E',
@@ -537,7 +541,7 @@ var baDate;
         controller: function ($scope, $element, $attrs, $timeout) {
           if (!$scope.text || $scope.text === '') $scope.text = ba.date.config.lang;
           $scope.config = ba.date.config;
-
+    
           $scope.center = {};
           $scope.display = '';
           if (!$scope.ngModel) $scope.center.date = new baDate(new Date());
@@ -545,8 +549,8 @@ var baDate;
             $scope.center.date = new baDate($scope.ngModel);
             $scope.display = $scope.center.date.get();
           }
-
-
+    
+    
           $scope.center.beginning = $scope.center.date.get('firstWeekDayOfMonth');
           $scope.center.ending = $scope.center.date.get('lastWeekDayOfMonth');
           $scope.center.month = $scope.center.date.get('m');
@@ -556,7 +560,7 @@ var baDate;
             year: $scope.center.year,
             dayOfMonth: $scope.center.date.get('dayOfMonth'),
           };
-
+    
           $scope.selectDay = function (a) {
             var temp = $scope.center.date;
             temp.set('d', a);
@@ -588,7 +592,7 @@ var baDate;
             var q = ba.q.defer();
             $scope.changeClass = 'ba-hide';
             $timeout(function () {
-
+    
               $scope.changeClass = 'ba-show';
               q.done(null, true);
             }, 500);
@@ -616,10 +620,10 @@ var baDate;
         }
       };
     });
-
-
-
-
+    
+  
+  
+  
     //injects all services
     ba_ag_app.service('$baTimer', function ($rootScope, $timeout) {
       var onTimeout = function () {
@@ -674,8 +678,8 @@ var baDate;
         }
       };
     });
-
-
+    
+  
     //injects all factories
     ba_ag_app.factory('$baModal', ['$animate', '$rootElement', '$compile', '$controller', '$http', '$rootScope', '$q', '$templateRequest', '$timeout', function ($animate, $rootElement, $compile, $controller, $http, $rootScope, $q, $templateRequest, $timeout) {
       var templates = {
@@ -700,11 +704,11 @@ var baDate;
       var rootScopeOnClose;
       var modalScope;
       var compile = function (el, controller, id) {
-
+    
         modalScope = $rootScope.$new();
-
+    
         rootScopeOnClose = $rootScope.$on('$locationChangeSuccess', close);
-
+    
         var environment = {
           $scope: modalScope,
           id: id,
@@ -713,11 +717,11 @@ var baDate;
             close(b, a);
           }
         };
-
+    
         var linkFn = $compile(el);
         var modalElement = linkFn(modalScope);
         environment.$element = modalElement;
-
+    
         var modalController = $controller(controller, environment, false, null);
         $rootElement.append(modalElement);
       };
@@ -730,10 +734,10 @@ var baDate;
           rootScopeOnClose();
         });
       };
-
+    
       function Modal() {}
       Modal.prototype = {
-
+    
         setLanguage: function (lang) {
           lang = lang;
         },
@@ -747,7 +751,7 @@ var baDate;
             $scope.id = id;
             $scope.text = text;
             $scope.close = function () {
-
+    
               close(null, id);
             };
           }, id);
@@ -764,7 +768,7 @@ var baDate;
             $scope.id = id;
             $scope.text = img;
             $scope.close = function () {
-
+    
               close(null, id);
             };
           }, id);
@@ -819,7 +823,7 @@ var baDate;
             $scope.id = id;
             $scope.text = text;
             $scope.close = function (a) {
-
+    
               close(a, id);
             };
           }, id);
@@ -836,7 +840,7 @@ var baDate;
             $scope.id = id;
             $scope.text = img;
             $scope.close = function (a) {
-
+    
               close(a, id);
             };
           }, id);
@@ -879,12 +883,12 @@ var baDate;
           this.array = array;
         },
         custom: function (templateName, controllerName) {
-
+    
         },
       };
       return Modal;
     }]);
-
+    
   })();
-
+  
 }());
